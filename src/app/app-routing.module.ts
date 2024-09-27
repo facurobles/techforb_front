@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoguinComponent } from './features/loguin/components/loguin/loguin.component';
+import { LoguinComponent } from './features/loguin/components/loguin.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'loguin', pathMatch: 'full'},

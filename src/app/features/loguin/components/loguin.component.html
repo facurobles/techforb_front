@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col divImgLeft">
+            <img id="imgLoguin" src="../../../../../assets/fondoLoguin.png" alt="">
+            <div class="filtro"></div>
+            <div class="textoLeft">
+                <div class="tituloLeft">Iniciar sesión</div>
+                <div class="parrafo">
+                    Nos alegra tenerte de vuelta y estamos listos para <br> atender tus necesidades. Inicia sesión y
+                    continúa <br> aprovechando al máximo nuestra plataforma.
+                </div>
+                <div class="subtituloLeft"> <img id="logoSubtitulo" src="../../../../../assets/logoRayo.png"
+                        alt="">Monitoreo integral</div>
+                <div class="descripcion">Administra, monitorea mutiples plantas de forma centralizada</div>
+                <div class="subtituloLeft"> <img id="logoSubtituloEstrella" src="../../../../../assets/logoEstrella.png"
+                        alt="">Notificaciones en tiempo real</div>
+                <div class="descripcion">Recibi notificaciones en tiempo real sobre las mediciones</div>
+            </div>
+        </div>
+        <div class="col divLoguinRight">
+            <div class="contenedorLoguin">
+                <div class="tituloRight">Portal de monitoreo</div>
+                <div class="subtituloRight">Iniciar sesión</div>
+
+                <form [formGroup]="formulario" (ngSubmit)="enviar()">
+
+                    <mat-form-field appearance="outline" style="margin-top: 35px;">
+                        <mat-label class="label" for="email">Email</mat-label>
+                        <input matInput class="input" id="email" type="text" name="email" placeholder="Ingrese su email"
+                            formControlName="email">
+                    </mat-form-field>
+                    <div class="alert moverAlerta alert-danger"
+                        *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+                    <div class="alert moverAlerta alert-danger"
+                        *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['email']">
+                        Formato de email inválido
+                    </div>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label class="label" for="contraseña">Contraseña</mat-label>
+                        <input matInput class="input" id="contraseña" type={{tipo}} name="contraseña"
+                            placeholder="Ingrese su contraseña" formControlName="contraseña">
+                            <div class="divIcono">
+                                <img id="iconoOjo" (click)="mostrarContrasenia()" src={{urlIconoOjo}} alt="">
+                            </div>
+                    </mat-form-field>
+                    <div class="alert moverAlerta alert-danger"
+                        *ngIf="formulario.get('contraseña')?.touched && formulario.get('contraseña')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
