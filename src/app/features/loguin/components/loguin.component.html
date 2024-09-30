@@ -39,15 +39,15 @@
                     </div>
 
                     <mat-form-field appearance="outline">
-                        <mat-label class="label" for="contraseña">Contraseña</mat-label>
-                        <input matInput class="input" id="contraseña" type={{tipo}} name="contraseña"
-                            placeholder="Ingrese su contraseña" formControlName="contraseña">
+                        <mat-label class="label" for="password">Contraseña</mat-label>
+                        <input matInput class="input" id="password" type={{tipo}} name="password"
+                            placeholder="Ingrese su password" formControlName="password">
                             <div class="divIcono">
                                 <img id="iconoOjo" (click)="mostrarContrasenia()" src={{urlIconoOjo}} alt="">
                             </div>
                     </mat-form-field>
                     <div class="alert moverAlerta alert-danger"
-                        *ngIf="formulario.get('contraseña')?.touched && formulario.get('contraseña')?.errors?.['required']">
+                        *ngIf="formulario.get('password')?.touched && formulario.get('password')?.errors?.['required']">
                         Este campo es obligatorio
                     </div>
 
