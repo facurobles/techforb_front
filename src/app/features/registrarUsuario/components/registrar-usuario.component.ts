@@ -84,7 +84,7 @@ export class RegistrarUsuarioComponent {
     this.loginService.registrarUsuario(usuario).subscribe(data => {
       this.mensajesErrorBackend = Object.values(data);
 
-      console.log("entro con exito")
+      console.log("se registrro con éxito el usuario")
 
       setTimeout(() => {
         this.router.navigate(['/login']);

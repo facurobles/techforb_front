@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoguinModule } from './features/loguin/loguin.module';
 import { DashboardComponent } from './features/dashboard/components/dashboard.component';
 import { RegistrarUsuarioModule } from './features/registrarUsuario/registrar-usuario.module';
+import { CookieService } from 'ngx-cookie-service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AutenticacionInterceptor } from './core/interceptors/autenticacion.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { RegistrarUsuarioModule } from './features/registrarUsuario/registrar-us
     BrowserAnimationsModule,
     RegistrarUsuarioModule,
   ],
-  providers: [],
+  providers: [CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: AutenticacionInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

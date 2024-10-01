@@ -12,9 +12,9 @@ export class LoginService {
 
   constructor(private http : HttpClient, private backendUrlService : BackendUrlService) { }
 
-  public loginUsuario(usuario : UsuarioLogin) : Observable<string>{  
+  public loginUsuario(usuario : UsuarioLogin) : Observable<any>{  
     const url = this.backendUrlService.getLoginUrl();   
-    return this.http.post<string>(url,usuario);
+    return this.http.post<any>(url,usuario);
   }
   
   public registrarUsuario(usuario : UsuarioRegistrar) : Observable<string>{  

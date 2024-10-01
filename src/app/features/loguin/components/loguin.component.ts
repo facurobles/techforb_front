@@ -3,55 +3,69 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioLogin } from '../models/usuarioLogin';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-loguin',
   templateUrl: './loguin.component.html',
   styleUrls: ['./loguin.component.css']
 })
-export class LoguinComponent implements OnInit{
-  
+export class LoguinComponent implements OnInit {
+
   formulario!: FormGroup;
 
   urlIconoOjo = '../../../../assets/logoVisible.png';
 
   tipo = 'password';
 
-  mensajeErrorBackend : String ="";
-  
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router : Router){}
-  
+  mensajesErrorBackend: String[] = [];
+
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router, private cookieService: CookieService) { }
+
   ngOnInit(): void {
     this.formulario = this.iniciarFormulario();
   }
 
-  iniciarFormulario(): FormGroup{
+  iniciarFormulario(): FormGroup {
     return this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     })
   }
 
-  
-  mostrarContrasenia(){
-    this.tipo == 'text'? this.tipo = 'password' : this.tipo = 'text';
-    console.log(this.tipo)
-    
-    this.tipo == 'text'? this.urlIconoOjo = '../../../../assets/logoOculto.png' : this.urlIconoOjo = '../../../../assets/logoVisible.png';
-  }
-  
-  
-  enviar(){
-    const usuario : UsuarioLogin = new UsuarioLogin(this.formulario.get('email')?.value, this.formulario.get('password')?.value)
-  
-      this.loginService.loginUsuario(usuario).subscribe(data => {
-        console.log('Esta es la respuesta cuando me logueo' + data)
-        this.router.navigate(['/dashboard'])
 
-      }, error => {
-        this.mensajeErrorBackend = error.error +', Intente de nuevo.';
-        console.log('Esta es la respuesta del backend cuando falla el logueo' + error.error)
-      })
-   
+  mostrarContrasenia() {
+    this.tipo == 'text' ? this.tipo = 'password' : this.tipo = 'text';
+    console.log(this.tipo)
+
+    this.tipo == 'text' ? this.urlIconoOjo = '../../../../assets/logoOculto.png' : this.urlIconoOjo = '../../../../assets/logoVisible.png';
+  }
+
+
+  enviar() {
+    const usuario: UsuarioLogin = new UsuarioLogin(this.formulario.get('email')?.value, this.formulario.get('password')?.value)
+
+    this.loginService.loginUsuario(usuario).subscribe(data => {
+      console.log('Esta es la respuesta cuando el logueo es exitoso ' + data.jwt)
+      
+      const arrayToken = data.jwt.split('.');
+      const tokenPayload = JSON.parse(atob(arrayToken[1]));
+      console.log(arrayToken)
+      console.log(tokenPayload)
+      console.log(tokenPayload.nombre)
+
+      //despues de decifrar los datos del token los guardo en las cookies usando el servicio externo ngxcookies
+      this.cookieService.set('token', arrayToken, 1, '/')
+      this.cookieService.set('nombre', tokenPayload.nombre)
+      this.cookieService.set('apellido', tokenPayload.apellido)
+      this.cookieService.set('nacimiento', tokenPayload.nacimiento)
+
+      
+      this.router.navigate(['/dashboard'])
+
+    }, error => {
+      this.mensajesErrorBackend = Object.values(error.error);
+    })
+
   }
 }

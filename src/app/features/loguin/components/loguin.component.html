@@ -51,8 +51,10 @@
                         Este campo es obligatorio
                     </div>
 
-                    <div class="mensajeError">
-                        {{mensajeErrorBackend}}
+                    <div *ngIf="mensajesErrorBackend.length > 0" >
+                        <div *ngFor="let error of mensajesErrorBackend" class="mensajeError">
+                            {{error}}
+                        </div>
                     </div>
 
                     <div class="row divBotonPregunta">
