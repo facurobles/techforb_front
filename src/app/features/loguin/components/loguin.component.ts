@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Usuario } from '../models/usuario';
+import { UsuarioLogin } from '../models/usuarioLogin';
 import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loguin',
@@ -15,8 +16,10 @@ export class LoguinComponent implements OnInit{
   urlIconoOjo = '../../../../assets/logoVisible.png';
 
   tipo = 'password';
+
+  mensajeErrorBackend : String ="";
   
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService){}
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router : Router){}
   
   ngOnInit(): void {
     this.formulario = this.iniciarFormulario();
@@ -39,14 +42,16 @@ export class LoguinComponent implements OnInit{
   
   
   enviar(){
-    const usuario : Usuario = new Usuario(this.formulario.get('email')?.value, this.formulario.get('password')?.value)
+    const usuario : UsuarioLogin = new UsuarioLogin(this.formulario.get('email')?.value, this.formulario.get('password')?.value)
   
-    try {
       this.loginService.loginUsuario(usuario).subscribe(data => {
         console.log('Esta es la respuesta cuando me logueo' + data)
+        this.router.navigate(['/dashboard'])
+
+      }, error => {
+        this.mensajeErrorBackend = error.error +', Intente de nuevo.';
+        console.log('Esta es la respuesta del backend cuando falla el logueo' + error.error)
       })
-    } catch (error) {
-      console.log('Esta es la respuesta cuando falla el logueo' + error)
-    }
+   
   }
 }

@@ -138,7 +138,7 @@ form{
     transform: translateY(-24px); /* la libreria agrega un espacio en blanco y no lo pude borrar, x eso opte por mover el divAlerta */
 }
 
-#iconoOjo{
+.iconoOjo{
     position: absolute;
     height: auto;
     width: 18px;
@@ -150,6 +150,7 @@ form{
 .divBotonPregunta{
     display: flex;
     align-items: center;
+    justify-content: center;
     font-weight: 400;
     font-size: 14px;
     line-height: 21px;
@@ -175,7 +176,6 @@ form{
     font-size: 12px;
     line-height: 17px;
     font-weight: 400;
-    padding-top: 20px;
 }
 
 .letraVerde{
@@ -187,18 +187,6 @@ form{
 .mensajeError{
     color: red;
     padding-bottom: 10px;
-}
-
-.divRegistrar{
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 21px;
-    padding-top: 20px;
-}
-
-.divRegistrar > a {
-    color: blue;
-    text-decoration:underline;
 }
 
 /*sobreescribo las clasese de angular material para lograr el aspecto exacto definido en el figma*/

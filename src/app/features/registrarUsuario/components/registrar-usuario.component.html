@@ -1,0 +1,116 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col divImgLeft">
+            <img id="imgLoguin" src="../../../../../assets/fondoLoguin.png" alt="">
+            <div class="filtro"></div>
+            <div class="textoLeft">
+                <div class="tituloLeft">Crear cuenta</div>
+                <div class="parrafo">
+                    Únete a nosotros y comienza a aprovechar todos los beneficios de nuestra plataforma. <br>
+                    Crea tu cuenta para acceder a funciones exclusivas y monitoreo en tiempo real.
+                </div>
+                <div class="subtituloLeft"> <img id="logoSubtitulo" src="../../../../../assets/logoRayo.png"
+                        alt="">Monitoreo integral</div>
+                <div class="descripcion">Administra, monitorea mutiples plantas de forma centralizada</div>
+                <div class="subtituloLeft"> <img id="logoSubtituloEstrella" src="../../../../../assets/logoEstrella.png"
+                        alt="">Notificaciones en tiempo real</div>
+                <div class="descripcion">Recibi notificaciones en tiempo real sobre las mediciones</div>
+            </div>
+        </div>
+        <div class="col divLoguinRight">
+            <div class="contenedorLoguin">
+                <div class="tituloRight">Portal de monitoreo</div>
+
+                <form [formGroup]="formulario" (ngSubmit)="enviar()">
+
+                    <mat-form-field appearance="outline">
+                        <mat-label class="label" for="email">Email</mat-label>
+                        <input matInput class="input" id="email" type="text" name="email" placeholder="Ingrese su email"
+                            formControlName="email">
+                    </mat-form-field>
+                    <div class="alert moverAlerta alert-danger"
+                        *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+                    <div class="alert moverAlerta alert-danger"
+                        *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['email']">
+                        Formato de email inválido
+                    </div>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label class="label" for="nombre">Nombre</mat-label>
+                        <input matInput class="input" id="nombre" type="text" name="nombre"
+                            placeholder="Ingrese su nombre" formControlName="nombre">
+                    </mat-form-field>
+                    <div class="alert moverAlerta alert-danger"
+                        *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label class="label" for="apellido">Apellido</mat-label>
+                        <input matInput class="input" id="apellido" type="text" name="apellido"
+                            placeholder="Ingrese su apellido" formControlName="apellido">
+                    </mat-form-field>
+                    <div class="alert moverAlerta alert-danger"
+                        *ngIf="formulario.get('apellido')?.touched && formulario.get('apellido')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+
+                    <mat-form-field>
+                        <mat-label class="label">Fecha de nacimiento</mat-label>
+                        <input matInput [matDatepicker]="selector" readonly formControlName="nacimiento">
+                        <mat-datepicker-toggle matIconSuffix [for]="selector"> </mat-datepicker-toggle>
+                        <mat-datepicker #selector> </mat-datepicker>
+                        <!-- para la vista mobile agregar touchUi en esta etiqueta touchUi={{touchUi}} -->
+                    </mat-form-field>
+                    <div class="alert moverAlerta alert-danger"
+                        *ngIf="formulario.get('nacimiento')?.touched && formulario.get('nacimiento')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label class="label" for="password">Contraseña</mat-label>
+                        <input matInput class="input" id="password" type={{tipo}} name="password"
+                            placeholder="Ingrese su password" formControlName="password">
+                        <div class="divIcono">
+                            <img class="iconoOjo" (click)="mostrarContrasenia()" src={{urlIconoOjo}} alt="">
+                        </div>
+                    </mat-form-field>
+                    <div class="alert moverAlerta alert-danger"
+                        *ngIf="formulario.get('password')?.touched && formulario.get('password')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label class="label" for="repetirPassword">Repita su Contraseña</mat-label>
+                        <input matInput class="input" id="repetirPassword" type={{tipo2}} name="repetirPassword"
+                            placeholder="Repita la contraseña ingresada" formControlName="repetirPassword">
+                        <div class="divIconoOjo">
+                            <img class="iconoOjo" (click)="mostrarContrasenia2()" src={{urlIconoOjo2}} alt="">
+                        </div>
+                    </mat-form-field>
+                    <div class="alert moverAlerta alert-danger"
+                        *ngIf="formulario.get('repetirPassword')?.touched && formulario.get('repetirPassword')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+                    <div class="alert moverAlerta alert-danger" *ngIf="formulario.hasError('validarContraseña')">
+                        No ingresó la misma contraseña
+                    </div>
+
+                    <div *ngIf="mensajesErrorBackend.length > 0" >
+                        <div *ngFor="let error of mensajesErrorBackend" class="mensajeError">
+                            {{error}}
+                        </div>
+                    </div>
+
+                    <div class="row divBotonPregunta" >
+                        <button [disabled]="formulario.invalid" id="botonIniciarSesion">Crear cuenta</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

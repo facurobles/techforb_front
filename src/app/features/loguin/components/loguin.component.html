@@ -6,8 +6,8 @@
             <div class="textoLeft">
                 <div class="tituloLeft">Iniciar sesión</div>
                 <div class="parrafo">
-                    Nos alegra tenerte de vuelta y estamos listos para <br> atender tus necesidades. Inicia sesión y
-                    continúa <br> aprovechando al máximo nuestra plataforma.
+                    Nos alegra tenerte de vuelta y estamos listos para atender tus necesidades. Inicia sesión y
+                    continúa aprovechando al máximo nuestra plataforma.
                 </div>
                 <div class="subtituloLeft"> <img id="logoSubtitulo" src="../../../../../assets/logoRayo.png"
                         alt="">Monitoreo integral</div>
@@ -42,28 +42,37 @@
                         <mat-label class="label" for="password">Contraseña</mat-label>
                         <input matInput class="input" id="password" type={{tipo}} name="password"
                             placeholder="Ingrese su password" formControlName="password">
-                            <div class="divIcono">
-                                <img id="iconoOjo" (click)="mostrarContrasenia()" src={{urlIconoOjo}} alt="">
-                            </div>
+                        <div class="divIcono">
+                            <img id="iconoOjo" (click)="mostrarContrasenia()" src={{urlIconoOjo}} alt="">
+                        </div>
                     </mat-form-field>
                     <div class="alert moverAlerta alert-danger"
                         *ngIf="formulario.get('password')?.touched && formulario.get('password')?.errors?.['required']">
                         Este campo es obligatorio
                     </div>
 
+                    <div class="mensajeError">
+                        {{mensajeErrorBackend}}
+                    </div>
+
                     <div class="row divBotonPregunta">
-                        <div class="col  pregunta">¿Olvidaste tu contraseña?</div> 
+                        <div class="col  pregunta">¿Olvidaste tu contraseña?</div>
                         <div class="col  boton">
                             <button id="botonIniciarSesion">Iniciar sesión</button>
                         </div>
                     </div>
 
-                    <div class="row divPoliticasPrivacidad">
-                        Protegido por reCAPTCHA y sujeto a la<span class="letraVerde">&nbsp;Política de Privacidad&nbsp;</span> y <span class="letraVerde">&nbsp;Condiciones</span>.
+                    <div class="divRegistrar">
+                        ¿Todavía no tenes una cuenta? <a href="/registrarUsuario" >Registrarme</a>
                     </div>
-                    
+
+                    <div class="row divPoliticasPrivacidad">
+                        Protegido por reCAPTCHA y sujeto a la<span class="letraVerde">&nbsp;Política de
+                            Privacidad&nbsp;</span> y <span class="letraVerde">&nbsp;Condiciones</span>.
+                    </div>
+
                 </form>
-                
+
             </div>
         </div>
     </div>
