@@ -10,19 +10,20 @@ import { Router } from '@angular/router';
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent implements OnInit{
+export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario = this.iniciarFormulario();
 
     this.nombre = this.cookieService.get('nombre') + ' ';
     this.apellido = this.cookieService.get('apellido');
-    const nac = this.cookieService.get('nacimiento');
-    const date = new Date(parseInt(nac));
-    const dateFormateada = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-    this.nacimiento = dateFormateada;
-    // console.log(new Date(parseInt(nac)))
     this.email = this.cookieService.get('email');
+
+    const nac = this.cookieService.get('nacimiento');
+    this.nacimiento = this.formateadorFecha(nac);
+    console.log(nac)
+    console.log(this.nacimiento)
+    console.log(new Date(this.cookieService.get('nacimiento')))
   }
 
   formulario!: FormGroup;
@@ -30,52 +31,63 @@ export class PerfilComponent implements OnInit{
   mensajesErrorBackend: String[] = [];
 
 
-  constructor(private cookieService:CookieService, private formBuilder: FormBuilder, private actualizarUsuarioService:ActualizarUsuarioService, private router : Router){}
+  constructor(private cookieService: CookieService, private formBuilder: FormBuilder, private actualizarUsuarioService: ActualizarUsuarioService, private router: Router) { }
 
-  nombre! : string;
-  apellido! : string;
-  email! : string;
-  nacimiento! : string;
+  nombre!: string;
+  apellido!: string;
+  email!: string;
+  nacimiento!: string;
 
   iniciarFormulario(): FormGroup {
     return this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      nacimiento: ['', [Validators.required]],
-      nombre: ['', [Validators.required]],
-      apellido: ['', [Validators.required]]
+      email: [this.cookieService.get('email'), [Validators.required, Validators.email]],
+      nacimiento: [new Date(this.cookieService.get('nacimiento')), [Validators.required]],
+      nombre: [this.cookieService.get('nombre'), [Validators.required]],
+      apellido: [this.cookieService.get('apellido'), [Validators.required]]
     })
   }
 
-  enviar(){
+  formateadorFecha(fecha: string): string {
+    const date = new Date(fecha);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');  // getMonth() devuelve el mes (0-11), por eso sumamos 1
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${day}/${month}/${year}`
+  }
+
+  enviar() {
     const usuario: UsuarioActualizar = new UsuarioActualizar(
       this.formulario.get('email')?.value,
       this.formulario.get('nombre')?.value,
       this.formulario.get('apellido')?.value,
       this.formulario.get('nacimiento')?.value)
 
-    this.actualizarUsuarioService.actualizarUsuario(usuario, this.formulario.get('email')?.value).subscribe(data=>{
+    this.actualizarUsuarioService.actualizarUsuario(usuario, this.cookieService.get('email')).subscribe(data => {
       this.mensajesErrorBackend = Object.values(data);
-      
+
       console.log("se actualizo con éxito el usuario")
 
-      const arrayToken = data.jwt.split('.');
-      const tokenPayload = JSON.parse(atob(arrayToken[1]));
+      // const arrayToken = data.jwt.split('.');
+      // const tokenPayload = JSON.parse(atob(arrayToken[1]));
       // console.log(arrayToken)
       // console.log(tokenPayload)
 
       //despues de decifrar los datos del token los guardo en las cookies usando el servicio externo ngxcookies
-      this.cookieService.set('token', data.jwt, 1, '/')
-      this.cookieService.set('nombre', tokenPayload.nombre)
-      this.cookieService.set('apellido', tokenPayload.apellido)
-      this.cookieService.set('nacimiento', tokenPayload.nacimiento)
-      this.cookieService.set('email', tokenPayload.email)
+      // this.cookieService.set('token', data.jwt, 1, '/')
+      this.cookieService.set('nombre', this.formulario.get('nombre')?.value)
+      this.cookieService.set('apellido', this.formulario.get('apellido')?.value)
+      this.cookieService.set('email', this.formulario.get('email')?.value)
+
+      const date = new Date(this.formulario.get('nacimiento')?.value);
+      this.cookieService.set('nacimiento', date.toString())
 
       setTimeout(() => {
-        this.router.navigate(['/perfil']);
+        window.location.reload();
       }, 2000);
 
     }, error => {
       this.mensajesErrorBackend = Object.values(error.error);
+
     })
 
   }

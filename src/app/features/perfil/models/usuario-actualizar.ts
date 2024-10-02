@@ -1,15 +1,15 @@
 export class UsuarioActualizar {
 
-    private email: string;
-    private nombre: string;
-    private apellido: string;
-    private nacimiento: Date;
+    private emailDto: string;
+    private nombreDto: string;
+    private apellidoDto: string;
+    private nacimientoDto: Date;
 
     constructor(email: string, nombre: string, apellido: string, nacimiento: Date) {
-        this.email = email;
-        this.nombre = nombre
-        this.apellido = apellido
-        this.nacimiento = nacimiento
+        this.emailDto = email;
+        this.nombreDto = nombre;
+        this.apellidoDto = apellido;
+        this.nacimientoDto = nacimiento;
     }
 
 }

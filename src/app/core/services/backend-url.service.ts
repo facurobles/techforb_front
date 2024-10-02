@@ -20,7 +20,7 @@ export class BackendUrlService {
   }
   
   public getActualizarUsuarioUrl(email : string):string{
-    return `${this.url}/usuario/actualizar?Email=${email}`;
+    return `${this.url}usuario/actualizar/${email}`;
   }
 
 }

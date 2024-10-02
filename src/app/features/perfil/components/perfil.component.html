@@ -15,7 +15,7 @@
                     <div class="col columna">
 
                         <mat-form-field appearance="outline" style="margin-top: 15px;">
-                            <mat-label class="label" for="nombre">{{nombre}}</mat-label>
+                            <mat-label class="label" for="nombre">Nombre</mat-label>
                             <input matInput class="input" id="nombre" type="text" name="nombre"
                                 placeholder="Ingrese su nombre" formControlName="nombre">
                         </mat-form-field>
@@ -25,7 +25,7 @@
                         </div>
 
                         <mat-form-field appearance="outline" style="margin-top: 15px;">
-                            <mat-label class="label">{{nacimiento}}</mat-label>
+                            <mat-label class="label">Fecha de nacimiento</mat-label>
                             <input matInput [matDatepicker]="selector" readonly formControlName="nacimiento">
                             <mat-datepicker-toggle matIconSuffix [for]="selector"> </mat-datepicker-toggle>
                             <mat-datepicker #selector> </mat-datepicker>
@@ -41,7 +41,7 @@
                     <div class="col columna">
 
                         <mat-form-field appearance="outline" style="margin-top: 15px;">
-                            <mat-label class="label" for="apellido">{{apellido}}</mat-label>
+                            <mat-label class="label" for="apellido">Apellido</mat-label>
                             <input matInput class="input" id="apellido" type="text" name="apellido"
                                 placeholder="Ingrese su apellido" formControlName="apellido">
                         </mat-form-field>
@@ -51,7 +51,7 @@
                         </div>
 
                         <mat-form-field appearance="outline" style="margin-top: 15px;">
-                            <mat-label class="label" for="email">{{email}}</mat-label>
+                            <mat-label class="label" for="email">Email</mat-label>
                             <input matInput class="input" id="email" type="text" name="email"
                                 placeholder="Ingrese su email" formControlName="email">
                         </mat-form-field>
@@ -77,7 +77,7 @@
 
                     <div class="row divBoton text-center">
                         <div class="col  boton">
-                            <button id="botonIniciarSesion">Guardar cambios</button>
+                            <button [disabled]="formulario.invalid" id="botonIniciarSesion">Guardar cambios</button>
                         </div>
                     </div>
 
