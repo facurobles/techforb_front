@@ -30,6 +30,8 @@ export class PerfilComponent implements OnInit {
 
   mensajesErrorBackend: String[] = [];
 
+  banderaMensaje! : boolean;
+
 
   constructor(private cookieService: CookieService, private formBuilder: FormBuilder, private actualizarUsuarioService: ActualizarUsuarioService, private router: Router) { }
 
@@ -64,6 +66,7 @@ export class PerfilComponent implements OnInit {
 
     this.actualizarUsuarioService.actualizarUsuario(usuario, this.cookieService.get('email')).subscribe(data => {
       this.mensajesErrorBackend = Object.values(data);
+      this.banderaMensaje = true;
 
       console.log("se actualizo con éxito el usuario")
 
@@ -86,7 +89,19 @@ export class PerfilComponent implements OnInit {
       }, 2000);
 
     }, error => {
-      this.mensajesErrorBackend = Object.values(error.error);
+      this.banderaMensaje = false
+      //implementacion provisoria, manejar el mensaje desde el backend en caso de token vencido
+      if(this.mensajesErrorBackend.length > 0){
+        this.mensajesErrorBackend = Object.values(error.error);
+      }else{
+        this.mensajesErrorBackend = ["error: Se vencio tu sesion"];
+        this.cookieService.delete('token', '/')
+      }
+
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
 
     })
 

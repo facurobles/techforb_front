@@ -65,19 +65,21 @@
                         </div>
 
 
-                        <div *ngIf="mensajesErrorBackend.length > 0">
-                            <div *ngFor="let error of mensajesErrorBackend" class="mensajeError">
-                                {{error}}
-                            </div>
-                        </div>
-
-
-
                     </div>
 
-                    <div class="row divBoton text-center">
+                    <div class="row divBoton">
                         <div class="col  boton">
                             <button [disabled]="formulario.invalid" id="botonIniciarSesion">Guardar cambios</button>
+                        </div>
+                        <div class="col containerMensaje" *ngIf="mensajesErrorBackend.length > 0">
+                            <div class="divMensaje" [ngClass]="banderaMensaje? 'divMensajeOk':'divMensajeError'" >
+                                <div class="divIcono">
+                                    <img id="icono" [src]="banderaMensaje? '../../../../assets/tildeOkIcono.png':'../../../../assets/errorIcono.png'" alt="">
+                                </div>
+                                <div *ngFor="let error of mensajesErrorBackend" class="mensajeError">
+                                    {{error}}
+                                </div>
+                            </div>
                         </div>
                     </div>
 

@@ -38,9 +38,6 @@
     line-height: 45px;
 }
 
-.divDatos{
-}
-
 .columna{
     display: flex;
     flex-direction: column;
@@ -70,9 +67,41 @@
     transform: translateY(-24px); /* la libreria agrega un espacio en blanco y no lo pude borrar, x eso opte por mover el divAlerta */
 }
 
+.divMensaje{
+    display: flex;
+    flex-direction: row;
+    width: min-content;
+    white-space: nowrap;
+    padding-top: 10px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.divMensajeOk{
+    border-left: 5px solid rgb(141, 187, 73);
+    background: rgb(209, 255, 139);
+}
+
+.divMensajeError{
+    border-left: 5px solid rgb(187, 73, 73);
+    background: rgb(255, 139, 139);
+}
+
 .mensajeError{
-    color: red;
+    font-family: var(--font-family-primary);
+    font-weight: 600;
+    color: rgb(70, 70, 70);
     padding-bottom: 10px;
+    padding-left: 20px;
+    height: min-content;
+}
+
+
+#icono{
+    width: 25px;
 }
 
 /*sobreescribo las clasese de angular material para lograr el aspecto exacto definido en el figma*/
