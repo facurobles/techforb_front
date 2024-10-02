@@ -7,13 +7,18 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ActualizarUsuarioService {
+export class UsuarioService {
 
   constructor(private http : HttpClient, private backendUrlService : BackendUrlService) { }
 
   public actualizarUsuario(usuario : UsuarioActualizar, email : string) : Observable<any>{  
     const url = this.backendUrlService.getActualizarUsuarioUrl(email);   
     return this.http.put<any>(url,usuario);
+  }
+  
+  public borrarUsuario(email : string) : Observable<any>{  
+    const url = this.backendUrlService.getBorrarUsuarioUrl(email);   
+    return this.http.delete<any>(url);
   }
 
 }

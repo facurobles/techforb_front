@@ -22,5 +22,9 @@ export class BackendUrlService {
   public getActualizarUsuarioUrl(email : string):string{
     return `${this.url}usuario/actualizar/${email}`;
   }
+  
+  public getBorrarUsuarioUrl(email : string):string{
+    return `${this.url}usuario/borrar/${email}`;
+  }
 
 }

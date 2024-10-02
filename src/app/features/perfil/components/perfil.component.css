@@ -56,6 +56,16 @@
     border: none;
     color: #FFFFFF;
 }
+#botonEliminarUsuario{
+    font-weight: 500;
+    width: 164px;
+    height: 48px;
+    border-radius: 12px;
+    background: #aa3333;
+    border: none;
+    color: #FFFFFF;
+    margin-left: 20px;
+}
 
 .alert{
     padding: 2px;
@@ -97,6 +107,9 @@
     padding-bottom: 10px;
     padding-left: 20px;
     height: min-content;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
 }
 
 

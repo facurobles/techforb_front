@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { UsuarioActualizar } from '../models/usuario-actualizar';
-import { ActualizarUsuarioService } from '../services/actualizar-usuario.service';
+import { UsuarioService } from '../services/actualizar-usuario.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -30,10 +30,10 @@ export class PerfilComponent implements OnInit {
 
   mensajesErrorBackend: String[] = [];
 
-  banderaMensaje! : boolean;
+  banderaMensaje!: boolean;
 
 
-  constructor(private cookieService: CookieService, private formBuilder: FormBuilder, private actualizarUsuarioService: ActualizarUsuarioService, private router: Router) { }
+  constructor(private cookieService: CookieService, private formBuilder: FormBuilder, private usuarioService: UsuarioService, private router: Router) { }
 
   nombre!: string;
   apellido!: string;
@@ -57,32 +57,11 @@ export class PerfilComponent implements OnInit {
     return `${day}/${month}/${year}`
   }
 
-  enviar() {
-    const usuario: UsuarioActualizar = new UsuarioActualizar(
-      this.formulario.get('email')?.value,
-      this.formulario.get('nombre')?.value,
-      this.formulario.get('apellido')?.value,
-      this.formulario.get('nacimiento')?.value)
-
-    this.actualizarUsuarioService.actualizarUsuario(usuario, this.cookieService.get('email')).subscribe(data => {
+  borrarUsuario() {
+    this.usuarioService.borrarUsuario(this.cookieService.get('email')).subscribe(data => {
       this.mensajesErrorBackend = Object.values(data);
-      this.banderaMensaje = true;
-
-      console.log("se actualizo con éxito el usuario")
-
-      // const arrayToken = data.jwt.split('.');
-      // const tokenPayload = JSON.parse(atob(arrayToken[1]));
-      // console.log(arrayToken)
-      // console.log(tokenPayload)
-
-      //despues de decifrar los datos del token los guardo en las cookies usando el servicio externo ngxcookies
-      // this.cookieService.set('token', data.jwt, 1, '/')
-      this.cookieService.set('nombre', this.formulario.get('nombre')?.value)
-      this.cookieService.set('apellido', this.formulario.get('apellido')?.value)
-      this.cookieService.set('email', this.formulario.get('email')?.value)
-
-      const date = new Date(this.formulario.get('nacimiento')?.value);
-      this.cookieService.set('nacimiento', date.toString())
+      this.banderaMensaje = false;
+      this.cookieService.delete('token', '/')
 
       setTimeout(() => {
         window.location.reload();
@@ -91,9 +70,58 @@ export class PerfilComponent implements OnInit {
     }, error => {
       this.banderaMensaje = false
       //implementacion provisoria, manejar el mensaje desde el backend en caso de token vencido
-      if(this.mensajesErrorBackend.length > 0){
+      if (this.mensajesErrorBackend.length > 0) {
         this.mensajesErrorBackend = Object.values(error.error);
-      }else{
+      } else {
+        this.mensajesErrorBackend = ["error: Se vencio tu sesion"];
+        this.cookieService.delete('token', '/')
+      }
+
+
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 2000);
+    })
+  }
+
+
+  actualizar() {
+    const usuario: UsuarioActualizar = new UsuarioActualizar(
+      this.formulario.get('email')?.value,
+      this.formulario.get('nombre')?.value,
+      this.formulario.get('apellido')?.value,
+      this.formulario.get('nacimiento')?.value)
+
+    this.usuarioService.actualizarUsuario(usuario, this.cookieService.get('email')).subscribe(data => {
+      this.mensajesErrorBackend = Object.values(data);
+      this.banderaMensaje = true;
+
+      console.log("se actualizo con éxito el usuario")
+
+      this.cookieService.set('nombre', this.formulario.get('nombre')?.value)
+      this.cookieService.set('apellido', this.formulario.get('apellido')?.value)
+
+      const date = new Date(this.formulario.get('nacimiento')?.value);
+      this.cookieService.set('nacimiento', date.toString())
+
+      //si se actualizo el email lo mando a loguearse de nuevo
+      if (this.cookieService.get('email') != this.formulario.get('email')?.value) {
+        this.cookieService.delete('token', '/');
+        this.mensajesErrorBackend = ["Email actualizado con éxito.", "Redirigiendo al login..."];
+      } else {
+        this.cookieService.set('email', this.formulario.get('email')?.value)
+      }
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+
+    }, error => {
+      this.banderaMensaje = false
+      //implementacion provisoria, manejar el mensaje desde el backend en caso de token vencido
+      if (this.mensajesErrorBackend.length > 0) {
+        this.mensajesErrorBackend = Object.values(error.error);
+      } else {
         this.mensajesErrorBackend = ["error: Se vencio tu sesion"];
         this.cookieService.delete('token', '/')
       }
