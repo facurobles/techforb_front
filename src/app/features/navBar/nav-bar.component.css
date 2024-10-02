@@ -1,0 +1,54 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container-fluid{
+    background: #E9F1F4;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    font-family: var(--font-family-primary);
+    color: #000000;
+}
+
+.divNabBar{
+    height: 100%;
+}
+
+.divTitulo{
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 45px;
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+}
+
+.divPerfil{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: right;
+}
+
+.divIcono{
+    padding-left: 15px;
+}
+
+.icono{
+    width: 20px;
+}
+
+.divNombre{
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+a{
+    text-decoration: none;
+    color: #000000;
+}

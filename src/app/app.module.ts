@@ -16,6 +16,7 @@ import { MainComponent } from './features/main/main.component';
 import { MonitoreoComponent } from './features/monitoreo/monitoreo.component';
 import { SensoresComponent } from './features/sensores/sensores.component';
 import { PlantaComponent } from './features/planta/planta.component';
+import { PerfilComponent } from './features/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PlantaComponent } from './features/planta/planta.component';
     MonitoreoComponent,
     SensoresComponent,
     PlantaComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
