@@ -20,7 +20,15 @@ export class LoguinComponent implements OnInit {
 
   mensajesErrorBackend: String[] = [];
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router, private cookieService: CookieService) { }
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router, private cookieService: CookieService) { 
+    this.cookieService.deleteAll()
+    const token=  this.cookieService.get('token')
+    if(!token){
+      console.log('no hay token')
+    }else{
+      console.log('token'+ token)
+    }
+  }
 
   ngOnInit(): void {
     this.formulario = this.iniciarFormulario();
@@ -50,18 +58,17 @@ export class LoguinComponent implements OnInit {
       
       const arrayToken = data.jwt.split('.');
       const tokenPayload = JSON.parse(atob(arrayToken[1]));
-      console.log(arrayToken)
-      console.log(tokenPayload)
-      console.log(tokenPayload.nombre)
+      // console.log(arrayToken)
+      // console.log(tokenPayload)
 
       //despues de decifrar los datos del token los guardo en las cookies usando el servicio externo ngxcookies
-      this.cookieService.set('token', arrayToken, 1, '/')
+      this.cookieService.set('token', data.jwt, 1, '/')
       this.cookieService.set('nombre', tokenPayload.nombre)
       this.cookieService.set('apellido', tokenPayload.apellido)
       this.cookieService.set('nacimiento', tokenPayload.nacimiento)
 
       
-      this.router.navigate(['/dashboard'])
+      this.router.navigate(['/main'])
 
     }, error => {
       this.mensajesErrorBackend = Object.values(error.error);

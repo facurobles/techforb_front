@@ -17,11 +17,11 @@ export class AutenticacionGuard implements CanActivate {
     const token = this.cookieService.get('token');
 
     if (token) {
-      console.log('el guard me dejo pasar a la ruta')
+      console.log('el guard me dejo pasar a la ruta '+ this.router.url)
       return true;
     }else{
       console.log('se redirigió al logue}in por falta de token')
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
       return false;
     }
 

@@ -1,0 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container-fluid{
+    height: 100vh;
+}
+
+.divContainerAll{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.divSideNav{
+    width: 80px;
+    height: 100%;
+}
+
+.divNavBarRouterOutlet{
+    width: calc(100vw - 80px);
+}
+
+.divNavBar{
+    height: 95px;
+    width: 100%;
+}
+
+.divRouterOutlet{
+    width: 100%;
+    height: calc(100vh - 95px);
+}
+

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div >
+        <a routerLink="dashboard">
+            <img id="logo" src="../../../assets/montaniaIcon.png" alt="">
+        </a>
+    </div>
+    
+    <div class="divIcono" >
+        <a routerLink="dashboard" >
+            <img class="icono" [src]="estaActivo('/main/dashboard')? '../../../assets/mundoIconoActivo.png':'../../../assets/mundoIcono.png'" alt="">
+        </a>
+    </div>
+    <div class="divIcono" >
+        <a routerLink="monitoreo" >
+            <img class="icono" [src]="estaActivo('/main/monitoreo')? '../../../assets/camaraIconoActivo.png':'../../../assets/camaraIcono.png'" alt="">
+        </a>
+    </div>
+    <div class="divIcono" >
+        <a routerLink="sensores" >
+            <img class="icono" [src]="estaActivo('/main/sensores')? '../../../assets/radarIconoActivo.png':'../../../assets/radarIcono.png'" alt="">
+        </a>
+    </div>
+    <div class="divIcono" >
+        <a routerLink="planta" >
+            <img class="icono" [src]="estaActivo('/main/planta')? '../../../assets/nuclearIconoActivo.png':'../../../assets/nuclearIcono.png'" alt="">
+        </a>
+    </div>
+    <div class="divIcono" >
+        <a >
+            <img class="icono" (click)="cerrarSesion()" [src]="estaActivo('/main/logOut')? '../../../assets/logOutIconoActivo.png':'../../../assets/logOutIcono.png'" alt="">
+        </a>
+    </div>
+</div>

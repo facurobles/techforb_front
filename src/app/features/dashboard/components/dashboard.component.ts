@@ -10,11 +10,8 @@ export class DashboardComponent {
 
   constructor(private cookieService: CookieService){}
 
-  token:string =  this.cookieService.get('token')
   nombre:string =  this.cookieService.get('nombre')
   apellido:string =  this.cookieService.get('apellido')
   nacimiento:string =  this.cookieService.get('nacimiento')
-
-  
 
 }

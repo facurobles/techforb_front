@@ -1,0 +1,23 @@
+.container-fluid{
+    height: 100%;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 3px 0 5px  #0000001A;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#logo{
+    width: 36px;
+    padding-top: 20px;
+    padding-bottom: 70px;
+}
+
+.icono{
+    width: 24px;
+}
+
+.divIcono{
+    padding-bottom: 35px;
+}
