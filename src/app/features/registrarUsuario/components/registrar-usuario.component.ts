@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../../loguin/services/login.service';
 import { UsuarioRegistrar } from '../models/usuario-registrar';
+import { RegistrarUsuarioService } from '../services/registrar-usuario.service';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -22,8 +22,9 @@ export class RegistrarUsuarioComponent {
 
   mensajesErrorBackend: String[] = [];
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
+  constructor(private formBuilder : FormBuilder, private registrarUsuarioService: RegistrarUsuarioService, private router: Router) { }
 
+  
   ngOnInit(): void {
     this.formulario = this.iniciarFormulario();
   }
@@ -81,7 +82,7 @@ export class RegistrarUsuarioComponent {
       this.formulario.get('apellido')?.value,
       this.formulario.get('nacimiento')?.value)
 
-    this.loginService.registrarUsuario(usuario).subscribe(data => {
+    this.registrarUsuarioService.registrarUsuario(usuario).subscribe(data => {
       this.mensajesErrorBackend = Object.values(data);
 
       console.log("se registrro con éxito el usuario")

@@ -1,8 +1,8 @@
 .container-fluid{
     height: 100%;
     width: 100%;
-    background: #FFFFFF;
-    box-shadow: 3px 0 5px  #0000001A;
+    background: var(--color-secundario);
+    box-shadow: 3px 0 5px  var(--color-sombra);
     display: flex;
     align-items: center;
     flex-direction: column;

@@ -18,5 +18,9 @@ export class BackendUrlService {
   public getRegistrarUrl():string{
     return this.url + 'autenticacion/register'
   }
+  
+  public getActualizarUsuarioUrl(email : string):string{
+    return `${this.url}/usuario/actualizar?Email=${email}`;
+  }
 
 }

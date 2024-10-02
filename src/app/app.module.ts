@@ -16,7 +16,7 @@ import { MainComponent } from './features/main/main.component';
 import { MonitoreoComponent } from './features/monitoreo/monitoreo.component';
 import { SensoresComponent } from './features/sensores/sensores.component';
 import { PlantaComponent } from './features/planta/planta.component';
-import { PerfilComponent } from './features/perfil/perfil.component';
+import { PerfilModule } from './features/perfil/perfil.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,6 @@ import { PerfilComponent } from './features/perfil/perfil.component';
     MonitoreoComponent,
     SensoresComponent,
     PlantaComponent,
-    PerfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +35,7 @@ import { PerfilComponent } from './features/perfil/perfil.component';
     LoguinModule,
     BrowserAnimationsModule,
     RegistrarUsuarioModule,
+    PerfilModule,
   ],
   providers: [CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: AutenticacionInterceptor, multi: true }

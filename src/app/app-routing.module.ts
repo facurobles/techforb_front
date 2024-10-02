@@ -8,6 +8,7 @@ import { MainComponent } from './features/main/main.component';
 import { MonitoreoComponent } from './features/monitoreo/monitoreo.component';
 import { SensoresComponent } from './features/sensores/sensores.component';
 import { PlantaComponent } from './features/planta/planta.component';
+import { PerfilComponent } from './features/perfil/components/perfil.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
     {path: 'monitoreo', component: MonitoreoComponent, canActivate: [AutenticacionGuard]},
     {path: 'sensores', component: SensoresComponent, canActivate: [AutenticacionGuard]},
     {path: 'planta', component: PlantaComponent, canActivate: [AutenticacionGuard]},
+    {path: 'perfil', component: PerfilComponent, canActivate: [AutenticacionGuard]},
   ]},
 ];
 

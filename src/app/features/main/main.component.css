@@ -4,21 +4,24 @@
 }
 
 .container-fluid{
-    height: 100vh;
+    height: min-content;
+    background: var(--color-primario);
 }
 
 .divContainerAll{
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: min-content;
 }
 
 .divSideNav{
     width: 80px;
-    height: 100%;
+    height: auto;
+    z-index: 10;
 }
 
 .divNavBarRouterOutlet{
+    height: min-content;
     width: calc(100vw - 80px);
 }
 
@@ -28,7 +31,8 @@
 }
 
 .divRouterOutlet{
+    height: 100%;
     width: 100%;
-    height: calc(100vh - 95px);
+    min-height: 100vh;
 }
 

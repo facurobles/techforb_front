@@ -66,6 +66,7 @@ export class LoguinComponent implements OnInit {
       this.cookieService.set('nombre', tokenPayload.nombre)
       this.cookieService.set('apellido', tokenPayload.apellido)
       this.cookieService.set('nacimiento', tokenPayload.nacimiento)
+      this.cookieService.set('email', tokenPayload.email)
 
       
       this.router.navigate(['/main'])

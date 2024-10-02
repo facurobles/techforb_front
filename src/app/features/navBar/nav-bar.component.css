@@ -4,13 +4,13 @@
 }
 
 .container-fluid{
-    background: #E9F1F4;
+    background: var(--color-primario);
     height: 100%;
     padding-left: 20px;
     padding-right: 40px;
     padding-bottom: 10px;
     font-family: var(--font-family-primary);
-    color: #000000;
+    color: var(--color-font);
 }
 
 .divNabBar{
@@ -50,5 +50,5 @@
 
 a{
     text-decoration: none;
-    color: #000000;
+    color: var(--color-font);
 }
