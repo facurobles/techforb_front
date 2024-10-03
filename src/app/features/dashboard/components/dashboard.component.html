@@ -1,11 +1,11 @@
-<div class="container-fluid">
+<div class="container-fluid" (click)="banderaOpciones(false, -1)">
 
     <div class="row divRowTarjetas">
         <div class="col divTarjeta">
             <div class="tarjeta">
                 <div class="col divDatos">
                     <div class="titulo">Lecturas OK</div>
-                    <div class="cantidad">1.234</div>
+                    <div class="cantidad">{{lecturas}}</div>
                 </div>
                 <div class="col divIcono">
                     <img src="../../../../assets/lecturasIcono.png" alt="" class="icono">
@@ -15,8 +15,8 @@
         <div class="col divTarjeta">
             <div class="tarjeta">
                 <div class="col divDatos">
-                    <div class="titulo">Lecturas OK</div>
-                    <div class="cantidad">1.234</div>
+                    <div class="titulo">Alertas medias</div>
+                    <div class="cantidad">{{alertasMedias}}</div>
                 </div>
                 <div class="col divIcono">
                     <img src="../../../../assets/alertasMediasIcono.png" alt="" class="icono">
@@ -26,8 +26,8 @@
         <div class="col divTarjeta">
             <div class="tarjeta">
                 <div class="col divDatos">
-                    <div class="titulo">Lecturas OK</div>
-                    <div class="cantidad">1.234</div>
+                    <div class="titulo">Alertas rojas</div>
+                    <div class="cantidad">{{alertasRojas}}</div>
                 </div>
                 <div class="col divIcono">
                     <img src="../../../../assets/alertasRojasIcono.png" alt="" class="icono">
@@ -37,8 +37,8 @@
         <div class="col divTarjeta">
             <div class="tarjeta">
                 <div class="col divDatos">
-                    <div class="titulo">Lecturas OK</div>
-                    <div class="cantidad">1.234</div>
+                    <div class="titulo">Sensores deshabilitados</div>
+                    <div class="cantidad">{{sensoresDeshabilitados}}</div>
                 </div>
                 <div class="col divIcono">
                     <img src="../../../../assets/deshabilitadosIcono.png" alt="" class="icono">
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <div class="row divTablaPlantas">
+    <div class="row divTablaPlantas" *ngIf="plantas">
         <div class="col tabla">
             <div class="row rowTituloTabla">
                 <div class="tituloTabla">Plantas</div>
@@ -56,30 +56,40 @@
                 </div>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pais</th>
-                        <th>Nombre de la planta</th>
-                        <th>Lecturas</th>
-                        <th>Alertas medias</th>
-                        <th>Alertas rojas</th>
-                        <th class="text-center">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Argentina</td>
-                        <td>Quilmes</td>
-                        <td>300</td>
-                        <td>10</td>
-                        <td>2</td>
-                        <td class="colOpciones"><img id="iconoOpciones" src="../../../../assets/opcionesIcono.png"
-                                alt=""></td>
-                        <!-- llenar de forma dinamica -->
-                    </tr>
-                </tbody>
-            </table>
+            <div class="containerTabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pais</th>
+                            <th>Nombre de la planta</th>
+                            <th>Lecturas</th>
+                            <th>Alertas medias</th>
+                            <th>Alertas rojas</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fila" *ngFor="let planta of plantas, let i = index" >
+                            <td>{{planta.pais}}</td>
+                            <td>{{planta.nombre}}</td>
+                            <td>{{planta.lecturas}}</td>
+                            <td>{{planta.alertasMedias}}</td>
+                            <td>{{planta.alertasRojas}}</td>
+                            <td class="colOpciones">
+                                <img class="iconoOpciones" *ngIf="indice!=i+1" (click)="banderaOpciones(true, i+1, $event)" id="tresPuntosOpciones" src="../../../../assets/opcionesIcono.png" alt="">
+                                <div class="opciones" *ngIf="bandera && indice==i+1">
+                                    <button class="botonOpciones botonEditar">
+                                        <img src="../../../../assets/editarIcono.png" alt="" class="iconoOpciones">
+                                    </button>
+                                    <button class="botonOpciones botonEliminar">
+                                        <img src="../../../../assets/eliminarIcono.png" alt="" class="iconoOpciones">
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </div>

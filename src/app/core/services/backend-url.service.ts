@@ -41,8 +41,13 @@ export class BackendUrlService {
   public getActualizarPlantaUrl(id: string):string{
     return `${this.url}planta/actualizar/${id}`;
   }
+  
   public getMetricasPlantasUrl():string{
     return `${this.url}planta/obtenerMetricas`;
+  }
+  
+  public getTodasPlantasUrl():string{
+    return `${this.url}planta/todas`;
   }
 
 

@@ -1,73 +1,73 @@
 export class PlantaModel {
 
-    private id: Number;
-    private pais: string;
-    private nombre: string;
-    private alertasMedias: Number;
-    private lecturas: Number;
-    private alertasRojas: Number;
-    private sensoresDeshabilitados: Number
+    private _id: Number;
+    private _pais: string;
+    private _nombre: string;
+    private _alertasMedias: Number;
+    private _lecturas: Number;
+    private _alertasRojas: Number;
+    private _sensoresDeshabilitados: Number
 
     constructor(id: Number, pais: string, nombre: string, alertasMedias: Number, lecturas: Number, alertasRojas: Number, sensoresDeshabilitados: Number){
-        this.id = id;
-        this.pais = pais;
-        this.nombre = nombre;
-        this.alertasMedias = alertasMedias;
-        this.lecturas = lecturas;
-        this.alertasRojas = alertasRojas;
-        this.sensoresDeshabilitados = sensoresDeshabilitados;
+        this._id = id;
+        this._pais = pais;
+        this._nombre = nombre;
+        this._alertasMedias = alertasMedias;
+        this._lecturas = lecturas;
+        this._alertasRojas = alertasRojas;
+        this._sensoresDeshabilitados = sensoresDeshabilitados;
     }
 
-    public getId():Number{
+    get id():Number{
         return this.id
     }
 
-    public getPais():string{
+    get pais():string{
         return this.pais
     }
 
-    public setPais(pais: string){
-        this.pais = pais
+    set pais(pais: string){
+        this._pais = pais
     }
 
-    public getNombre():string{
+    get nombre():string{
         return this.nombre
     }
 
-    public setNombre(nombre: string){
-        this.nombre = nombre
+    set nombre(nombre: string){
+        this._nombre = nombre
     }
 
-    public getAlertasMedias():Number{
+    get alertasMedias():Number{
         return this.alertasMedias
     }
 
-    public setAlertasMedias(alertasMedias: Number){
-        this.alertasMedias = alertasMedias
+    set alertasMedias(alertasMedias: Number){
+        this._alertasMedias = alertasMedias
     }
 
-    public getLecturas():Number{
+    get lecturas():Number{
         return this.lecturas
     }
 
-    public setLecturas(lecturas: Number){
-        this.lecturas = lecturas
+    set lecturas(lecturas: Number){
+        this._lecturas = lecturas
     }
 
-    public getAlertasRojas():Number{
+    get alertasRojas():Number{
         return this.alertasRojas
     }
 
-    public setAlertasRojas(alertasRojas: Number){
-        this.alertasRojas = alertasRojas
+    set alertasRojas(alertasRojas: Number){
+        this._alertasRojas = alertasRojas
     }
 
-    public getSensoresDeshabilitados():Number{
+    get sensoresDeshabilitados():Number{
         return this.sensoresDeshabilitados
     }
 
-    public setSensoresDeshabilitados(sensoresDeshabilitados: Number){
-        this.sensoresDeshabilitados = sensoresDeshabilitados
+    set sensoresDeshabilitados(sensoresDeshabilitados: Number){
+        this._sensoresDeshabilitados = sensoresDeshabilitados
     }
 
 }
