@@ -1,5 +1,341 @@
-<div class="container">
-    <div>{{nombre}}</div>
-    <div>{{apellido}}</div>
-    <div>{{nacimiento}}</div>
+<div class="container-fluid">
+
+    <div class="row divRowTarjetas">
+        <div class="col divTarjeta">
+            <div class="tarjeta">
+                <div class="col divDatos">
+                    <div class="titulo">Lecturas OK</div>
+                    <div class="cantidad">1.234</div>
+                </div>
+                <div class="col divIcono">
+                    <img src="../../../../assets/lecturasIcono.png" alt="" class="icono">
+                </div>
+            </div>
+        </div>
+        <div class="col divTarjeta">
+            <div class="tarjeta">
+                <div class="col divDatos">
+                    <div class="titulo">Lecturas OK</div>
+                    <div class="cantidad">1.234</div>
+                </div>
+                <div class="col divIcono">
+                    <img src="../../../../assets/alertasMediasIcono.png" alt="" class="icono">
+                </div>
+            </div>
+        </div>
+        <div class="col divTarjeta">
+            <div class="tarjeta">
+                <div class="col divDatos">
+                    <div class="titulo">Lecturas OK</div>
+                    <div class="cantidad">1.234</div>
+                </div>
+                <div class="col divIcono">
+                    <img src="../../../../assets/alertasRojasIcono.png" alt="" class="icono">
+                </div>
+            </div>
+        </div>
+        <div class="col divTarjeta">
+            <div class="tarjeta">
+                <div class="col divDatos">
+                    <div class="titulo">Lecturas OK</div>
+                    <div class="cantidad">1.234</div>
+                </div>
+                <div class="col divIcono">
+                    <img src="../../../../assets/deshabilitadosIcono.png" alt="" class="icono">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row divTablaPlantas">
+        <div class="col tabla">
+            <div class="row rowTituloTabla">
+                <div class="tituloTabla">Plantas</div>
+                <div class="divButtonCrearPlanta">
+                    <button id="buttonCrearPlanta">+ Crear nueva planta</button>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pais</th>
+                        <th>Nombre de la planta</th>
+                        <th>Lecturas</th>
+                        <th>Alertas medias</th>
+                        <th>Alertas rojas</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Argentina</td>
+                        <td>Quilmes</td>
+                        <td>300</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td class="colOpciones"><img id="iconoOpciones" src="../../../../assets/opcionesIcono.png"
+                                alt=""></td>
+                        <!-- llenar de forma dinamica -->
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row divRowIndicadores">
+        <div class="col divIndicador">
+            <div class="indicador">
+                <div class="row" style="height: 100%">
+                    <div class="col-8 divDatosIndicador">
+                        <div class="row">
+                            <div class="tituloIndicador">Temperatura</div>
+                        </div>
+                        <div class="row">
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
+                                <div class="cantidadIndicador">100</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">20</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 divIconoGrandeIndicador">
+                        <img class="iconoGrandeIndicadores" src="../../../../assets/temperaturaIcono.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col divIndicador">
+            <div class="indicador">
+                <div class="row" style="height: 100%">
+                    <div class="col-8 divDatosIndicador">
+                        <div class="row">
+                            <div class="tituloIndicador">Presión</div>
+                        </div>
+                        <div class="row">
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
+                                <div class="cantidadIndicador">100</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">20</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 divIconoGrandeIndicador">
+                        <img class="iconoGrandeIndicadores" src="../../../../assets/presionIcono.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col divIndicador">
+            <div class="indicador">
+                <div class="row" style="height: 100%">
+                    <div class="col-8 divDatosIndicador">
+                        <div class="row">
+                            <div class="tituloIndicador">Viento</div>
+                        </div>
+                        <div class="row">
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
+                                <div class="cantidadIndicador">100</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">20</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 divIconoGrandeIndicador">
+                        <img class="iconoGrandeIndicadores" src="../../../../assets/vientoIcono.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col divIndicador">
+            <div class="indicador">
+                <div class="row" style="height: 100%">
+                    <div class="col-8 divDatosIndicador">
+                        <div class="row">
+                            <div class="tituloIndicador">Niveles</div>
+                        </div>
+                        <div class="row">
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
+                                <div class="cantidadIndicador">100</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">20</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 divIconoGrandeIndicador">
+                        <img class="iconoGrandeIndicadores" src="../../../../assets/nivelesIcono.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row divRowIndicadores">
+        <div class="col divIndicador">
+            <div class="indicador">
+                <div class="row" style="height: 100%">
+                    <div class="col-8 divDatosIndicador">
+                        <div class="row">
+                            <div class="tituloIndicador">Energía</div>
+                        </div>
+                        <div class="row">
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
+                                <div class="cantidadIndicador">100</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">20</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 divIconoGrandeIndicador">
+                        <img class="iconoGrandeIndicadores" src="../../../../assets/energiaIcono.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col divIndicador">
+            <div class="indicador">
+                <div class="row" style="height: 100%">
+                    <div class="col-8 divDatosIndicador">
+                        <div class="row">
+                            <div class="tituloIndicador">Tensión</div>
+                        </div>
+                        <div class="row">
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
+                                <div class="cantidadIndicador">100</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">20</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 divIconoGrandeIndicador">
+                        <img class="iconoGrandeIndicadores" src="../../../../assets/tensionIcono.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col divIndicador">
+            <div class="indicador">
+                <div class="row" style="height: 100%">
+                    <div class="col-8 divDatosIndicador">
+                        <div class="row">
+                            <div class="tituloIndicador">Monóxido de carbono</div>
+                        </div>
+                        <div class="row">
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
+                                <div class="cantidadIndicador">100</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">20</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/monoxidoIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 divIconoGrandeIndicador">
+                        <img class="iconoGrandeIndicadores" src="../../../../assets/temperaturaIcono.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col divIndicador">
+            <div class="indicador">
+                <div class="row" style="height: 100%">
+                    <div class="col-8 divDatosIndicador">
+                        <div class="row">
+                            <div class="tituloIndicador">Otros gases</div>
+                        </div>
+                        <div class="row">
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
+                                <div class="cantidadIndicador">100</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">20</div>
+                            </div>
+                            <div class="col divIconoChicoIndicador">
+                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
+                                    alt="">
+                                <div class="cantidadIndicador">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 divIconoGrandeIndicador">
+                        <img class="iconoGrandeIndicadores" src="../../../../assets/otroGasesIcono.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>

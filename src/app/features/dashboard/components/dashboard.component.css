@@ -1,0 +1,198 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container-fluid{
+    height: auto;
+    min-height: 100%;
+    width: auto;
+    min-width: 100%;
+    padding-bottom: 50px;
+}
+
+
+/*tarjetas*/
+.divRowTarjetas{
+    height: auto;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.divTarjeta{
+    height: 110px;
+    padding: 10px;
+}
+
+.tarjeta{
+    height: 100%;
+    width: 100%;
+    background: var(--color-secundario );
+    border-radius: 15px;
+    font-family: var(--font-family-primary);
+    display: flex;
+    align-items: center;
+}
+
+.divDatos{
+    padding-left: 15px;
+}
+
+.titulo{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #8E8EA1;
+}
+
+.cantidad{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #22242C;
+}
+
+.divIcono{
+    padding-right: 15px;
+    display: flex;
+    justify-content: right;
+}
+
+.icono{
+    width: 60px;
+}
+
+/*tabla*/
+table{
+    width: 100%;
+    table-layout: auto;
+}
+
+.divTablaPlantas{
+    height: 350px;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: var(--font-family-primary);
+}
+
+.tabla{
+    border-radius: 15px;
+    background: var(--color-secundario);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.rowTituloTabla{
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #F3F6F7;
+}
+
+.divButtonCrearPlanta{
+    width: min-content;
+    padding-left: 20px;
+}
+
+#buttonCrearPlanta{
+    border-radius: 5px;
+    border: 1px solid #B0CAD1;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: var(--color-secundario);
+    width: min-content;
+    white-space: nowrap;
+}
+
+.tituloTabla{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    width: min-content;
+    padding-left: 20px;
+}
+
+#iconoOpciones{
+    height: 15px;
+    width: min-content;
+}
+
+.colOpciones{
+    display: flex;
+    justify-content: center;
+}
+
+/*indicadres*/
+.divRowIndicadores{
+    height: auto;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.divIndicador{
+    height: auto;
+    padding: 10px;
+}
+
+.indicador{
+    height: 90px;
+    border-radius: 15px;
+    background: var(--color-secundario);
+}
+
+.divIconoChicoIndicador{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.iconoChicoIndicadores{
+    width: 14px;
+    height: 14px;
+}
+
+.divIconoGrandeIndicador{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconoGrandeIndicadores{
+    width: 60px;
+    height: 60px;
+}
+
+.cantidadIndicador{
+    color: #000000;
+    padding-left: 5px;
+}
+
+.tituloIndicador{
+    color: #8E8EA1;
+}
+
+.divDatosIndicador{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding-left: 20px;
+}
