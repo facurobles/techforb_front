@@ -9,19 +9,22 @@ import { MonitoreoComponent } from './features/monitoreo/monitoreo.component';
 import { SensoresComponent } from './features/sensores/sensores.component';
 import { PlantaComponent } from './features/planta/planta.component';
 import { PerfilComponent } from './features/perfil/components/perfil.component';
+import { SesionExpiradaComponent } from './features/sesionExpirada/sesion-expirada.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoguinComponent},
   {path: 'registrarUsuario', component: RegistrarUsuarioComponent},
+  {path: 'sesionExpirada', component: SesionExpiradaComponent},
   {path: 'main', component: MainComponent, canActivate: [AutenticacionGuard], children : [
     {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-    {path: 'dashboard', component: DashboardComponent, canActivate: [AutenticacionGuard]},
+    {path: 'dashboard', component: DashboardComponent, canActivate: [AutenticacionGuard] },
     {path: 'monitoreo', component: MonitoreoComponent, canActivate: [AutenticacionGuard]},
     {path: 'sensores', component: SensoresComponent, canActivate: [AutenticacionGuard]},
     {path: 'planta', component: PlantaComponent, canActivate: [AutenticacionGuard]},
     {path: 'perfil', component: PerfilComponent, canActivate: [AutenticacionGuard]},
   ]},
+  {path: '**', component: LoguinComponent},
 ];
 
 @NgModule({

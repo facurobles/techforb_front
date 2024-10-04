@@ -1,15 +1,15 @@
 export class PlantaModel {
 
-    private _id: Number;
+    private _id: number;
     private _pais: string;
     private _nombre: string;
-    private _alertasMedias: Number;
-    private _lecturas: Number;
-    private _alertasRojas: Number;
-    private _sensoresDeshabilitados: Number
+    private _alertasMedias: number;
+    private _lecturas: number;
+    private _alertasRojas: number;
+    private _sensoresDeshabilitados: number
     private _codigo? :string
 
-    constructor(id: Number, pais: string, nombre: string, alertasMedias: Number, lecturas: Number, alertasRojas: Number, sensoresDeshabilitados: Number, codigo? :string){
+    constructor(id: number, pais: string, nombre: string, alertasMedias: number, lecturas: number, alertasRojas: number, sensoresDeshabilitados: number, codigo? :string){
         this._id = id;
         this._pais = pais;
         this._nombre = nombre;
@@ -20,7 +20,7 @@ export class PlantaModel {
         this._codigo = codigo;
     }
 
-    get id():Number{
+    get id():number{
         return this.id
     }
 
@@ -40,35 +40,35 @@ export class PlantaModel {
         this._nombre = nombre
     }
 
-    get alertasMedias():Number{
+    get alertasMedias():number{
         return this.alertasMedias
     }
 
-    set alertasMedias(alertasMedias: Number){
+    set alertasMedias(alertasMedias: number){
         this._alertasMedias = alertasMedias
     }
 
-    get lecturas():Number{
+    get lecturas():number{
         return this.lecturas
     }
 
-    set lecturas(lecturas: Number){
+    set lecturas(lecturas: number){
         this._lecturas = lecturas
     }
 
-    get alertasRojas():Number{
+    get alertasRojas():number{
         return this.alertasRojas
     }
 
-    set alertasRojas(alertasRojas: Number){
+    set alertasRojas(alertasRojas: number){
         this._alertasRojas = alertasRojas
     }
 
-    get sensoresDeshabilitados():Number{
+    get sensoresDeshabilitados():number{
         return this.sensoresDeshabilitados
     }
 
-    set sensoresDeshabilitados(sensoresDeshabilitados: Number){
+    set sensoresDeshabilitados(sensoresDeshabilitados: number){
         this._sensoresDeshabilitados = sensoresDeshabilitados
     }
 

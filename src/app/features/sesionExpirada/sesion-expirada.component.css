@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container-fluid{
+    height: 100%;
+}
+
+.fondoNegro{
+    background: var(--color-primario);
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.divModal{
+    width: min-content;
+    height: min-content;
+    white-space: nowrap;
+    border-radius: 15px;
+    border: 2px solid #33A3AA;
+    top: 50%;
+    left: 50%;
+    background: #FFFFFF;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+}

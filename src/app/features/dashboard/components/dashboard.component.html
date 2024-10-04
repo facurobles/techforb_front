@@ -55,7 +55,8 @@
             <div class="row rowTituloTabla">
                 <div class="tituloTabla">Plantas</div>
                 <div class="divButtonCrearPlanta">
-                    <button id="buttonCrearPlanta" (click)="cambiarBanderaModal(true); $event.stopPropagation()">+ Crear
+                    <button id="buttonCrearPlanta" (click)="cambiarBanderaModalCrear(true); $event.stopPropagation()">+
+                        Crear
                         nueva planta</button>
                 </div>
             </div>
@@ -74,10 +75,11 @@
                     </thead>
                     <tbody>
                         <tr class="fila" *ngFor="let planta of plantas, let i = index">
-                            <td >
+                            <td>
                                 <div class="divBandera">
-                                        <img class="bandera" [src]="'https://flagcdn.com/w40/' + planta.codigo + '.png'" alt="">
-                                        <div class="nombrePais">{{planta.pais}}</div>
+                                    <img class="bandera" [src]="'https://flagcdn.com/w40/' + planta.codigo + '.png'"
+                                        alt="">
+                                    <div class="nombrePais">{{planta.pais}}</div>
                                 </div>
                             </td>
                             <td>{{planta.nombre}}</td>
@@ -91,6 +93,7 @@
                                 <div class="opciones" *ngIf="bandera && indice==i+1">
                                     <button class="botonOpciones botonEditar">
                                         <img src="../../../../assets/editarIcono.png" alt="" title="EDITAR"
+                                            (click)="cambiarBanderaModalEditar(true); guardarPlantaSeleccionada(planta) ; $event.stopPropagation()"
                                             class="iconoOpciones">
                                     </button>
                                     <button class="botonOpciones botonEliminar"
@@ -153,44 +156,144 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 
-    <div class="containerModal" *ngIf="banderaModalCrear">
-        <div class="divModalCrearPlanta">
-            <form [formGroup]="formulario">
-                <div class="tituloModalCrear">Crear nueva planta</div>
+    <div class="containerModal" *ngIf="banderaModalCrear || banderaModalEditar">
 
-                <label class="labelCrear" for="nombrePlantaCrear">Nombre Planta</label>
-                <input type="text" class="inputPlantaCrear" placeholder="Ingrese nombre" formControlName="nombrePlanta">
+        <div class="divModal divModalCrear" *ngIf="banderaModalCrear">
+            <form [formGroup]="formularioCrear">
+                <div class="tituloModal">Crear nueva planta</div>
+
+                <label class="labelModal  labelCrear" for="nombrePlantaCrear">Nombre Planta</label>
+                <input type="text" class="inputPlantaCrear inputPlantaModal" placeholder="Ingrese nombre"
+                    formControlName="nombrePlanta">
                 <div class="alert moverAlerta alert-danger"
-                    *ngIf="formulario.get('nombrePlanta')?.touched && formulario.get('nombrePlanta')?.errors?.['required']">
+                    *ngIf="formularioCrear.get('nombrePlanta')?.touched && formularioCrear.get('nombrePlanta')?.errors?.['required']">
                     Este campo es obligatorio
                 </div>
 
-                <label class="labelCrear" for="paisCrearPlanta">País</label>
-                <select class="inputPlantaCrear" name="paises" id="paisCrearPlanta" formControlName="pais">
+                <label class="labelModal labelCrear" for="paisCrearPlanta">País</label>
+                <select class="inputPlantaCrear inputPlantaModal" name="paises" id="paisCrearPlanta"
+                    formControlName="pais">
                     <option value="" disabled selected>Seleccione un país</option>
                     <option *ngFor="let pais of paisesFormateados" value="{{pais.nombre}}">{{pais.nombre}}</option>
 
                 </select>
                 <div class="alert moverAlerta alert-danger"
-                    *ngIf="formulario.get('pais')?.touched && formulario.get('pais')?.errors?.['required']">
+                    *ngIf="formularioCrear.get('pais')?.touched && formularioCrear.get('pais')?.errors?.['required']">
                     Este campo es obligatorio
                 </div>
 
                 <div class="containerBotones">
-                    <button class="botonModal botonModalCrear" (click)="cambiarBanderaModal(false)">Cancelar</button>
                     <button class="botonModal botonModalCancelar"
-                        (click)="crearNuevaPlanta() ; $event.stopPropagation()"
-                        [disabled]="formulario.invalid">Crear</button>
+                        (click)="cambiarBanderaModalCrear(false)">Cancelar</button>
+                    <button class="botonModal botonModalCrear" (click)="crearNuevaPlanta() ; $event.stopPropagation()"
+                        [disabled]="formularioCrear.invalid">Crear</button>
                 </div>
 
             </form>
         </div>
-        <div class="divModalEditarPlanta">
 
+        <div class="divModal" *ngIf="banderaModalEditar">
+            <form [formGroup]="formularioEditar">
+                <div class="tituloModal">Editar planta</div>
+
+                <div class="row">
+                    <div class="col  colModal">
+                        <label class="labelModal" for="nombrePlantaEditar">Nombre Planta</label>
+                        <input type="text" class="inputPlantaModal" id="nombrePlantaEditar" placeholder="Ingrese nombre"
+                            formControlName="nombrePlantaEditar">
+                        <div class="alert moverAlerta alert-danger"
+                            *ngIf="formularioEditar.get('nombrePlantaEditar')?.touched && formularioEditar.get('nombrePlantaEditar')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+
+                    <div class="col  colModal">
+                        <label class="labelModal" for="paisPlantaEditar">País</label>
+                        <select class="inputPlantaModal" name="paises" id="paisPlantaEditar" formControlName="paisEditar">
+                            <option value="" disabled selected>Seleccione un país</option>
+                            <option class="optionPaises" *ngFor="let pais of paisesFormateados" value="{{pais.nombre}}">{{pais.nombre}}
+                            </option>
+                        </select>
+                        <div class="alert moverAlerta alert-danger"
+                            *ngIf="formularioEditar.get('paisEditar')?.touched && formularioEditar.get('paisEditar')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col  colModal">
+                        <label class="labelModal" for="lecturasEditar">Cantidad de lecturas</label>
+                        <input type="number" class="inputPlantaModal" placeholder="Ingrese" id="lecturasEditar"
+                            formControlName="lecturasEditar">
+                        <div class="alert moverAlerta alert-danger"
+                            *ngIf="formularioEditar.get('lecturasEditar')?.touched && formularioEditar.get('lecturasEditar')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div>
+                        <div class="alert moverAlerta alert-danger"
+                            *ngIf="formularioEditar.get('lecturasEditar')?.touched && formularioEditar.get('lecturasEditar')?.errors?.['min']">
+                            Ingrese valor positivo. 
+                        </div>
+                    </div>
+
+                    <div class="col  colModal">
+                        <label class="labelModal" for="sensoresDeshablitadosEditar">Sensores deshabilitados</label>
+                        <input type="number" class="inputPlantaModal" id="sensoresDeshablitadosEditar" placeholder="Ingrese"
+                            formControlName="sensoresDeshablitadosEditar">
+                        <div class="alert moverAlerta alert-danger"
+                            *ngIf="formularioEditar.get('sensoresDeshablitadosEditar')?.touched && formularioEditar.get('sensoresDeshablitadosEditar')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div>
+                        <div class="alert moverAlerta alert-danger"
+                            *ngIf="formularioEditar.get('sensoresDeshablitadosEditar')?.touched && formularioEditar.get('sensoresDeshablitadosEditar')?.errors?.['min']">
+                            Ingrese valor positivo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col  colModal">
+                        <label class="labelModal" for="alertasMediasEditar">Alertas medias</label>
+                        <input type="number" class="inputPlantaModal" id="alertasMediasEditar" placeholder="Ingrese"
+                            formControlName="alertasMediasEditar">
+                        <div class="alert moverAlerta alert-danger"
+                            *ngIf="formularioEditar.get('alertasMediasEditar')?.touched && formularioEditar.get('alertasMediasEditar')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div>
+                        <div class="alert moverAlerta alert-danger"
+                            *ngIf="formularioEditar.get('alertasMediasEditar')?.touched && formularioEditar.get('alertasMediasEditar')?.errors?.['min']">
+                            Ingrese valor positivo.
+                        </div>
+                    </div>
+
+                    <div class="col  colModal">
+                        <label class="labelModal" for="alertasRojasEditar">Alertas rojas</label>
+                        <input type="number" class="inputPlantaModal" id="alertasRojasEditar" placeholder="Ingrese"
+                            formControlName="alertasRojasEditar">
+                        <div class="alert moverAlerta alert-danger"
+                            *ngIf="formularioEditar.get('alertasRojasEditar')?.touched && formularioEditar.get('alertasRojasEditar')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div>
+                        <div class="alert moverAlerta alert-danger"
+                            *ngIf="formularioEditar.get('alertasRojasEditar')?.touched && formularioEditar.get('alertasRojasEditar')?.errors?.['min']">
+                            Ingrese valor positivo.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="containerBotones">
+                    <button class="botonModal botonModalCancelar"
+                        (click)="cambiarBanderaModalEditar(false)">Cancelar</button>
+                    <button class="botonModal botonModalCrear" (click)="editarPlanta() ; $event.stopPropagation()"
+                        [disabled]="formularioEditar.invalid">Guardar cambios</button>
+                </div>
+
+            </form>
         </div>
     </div>
 

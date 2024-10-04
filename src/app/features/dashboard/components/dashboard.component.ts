@@ -10,6 +10,8 @@ import * as items from '../models/items.json';
 import * as indicadores from '../models/indicadores.json'; 
 import * as paises from '../../../core/paises/paises.json'; 
 import { BanderasPaisesService } from 'src/app/core/services/banderas-paises.service';
+import { CookieService } from 'ngx-cookie-service';
+import { ActualizarPlantaService } from '../services/actualizarPlanta/actualizar-planta.service';
 
 
 @Component({
@@ -22,10 +24,10 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void {
     this.obtenerMetricasPlantas();
     this.traerTodasPlantas();
-    this.formulario = this.iniciarFormulario();
+    this.formularioCrear = this.iniciarFormularioCrear();
   }
 
-  constructor(private banderasPaisesService:BanderasPaisesService, private formBuilder: FormBuilder, private eliminarPlantaService: EliminarPlantaService, private todasPlantasService: TodasPlantasService, private metricasPlantasService:MetricasPlantasService, private crearPlantaService: CrearPlantaService){}
+  constructor(private banderasPaisesService:BanderasPaisesService, private actualizarPlantaService: ActualizarPlantaService, private formBuilder: FormBuilder, private eliminarPlantaService: EliminarPlantaService, private todasPlantasService: TodasPlantasService, private metricasPlantasService:MetricasPlantasService, private crearPlantaService: CrearPlantaService){}
   
   lecturas!: Number;
   alertasMedias!: Number;
@@ -33,8 +35,11 @@ export class DashboardComponent implements OnInit{
   sensoresDeshabilitados!: Number;
   plantas! : PlantaModel[];
   respuestaBackend!: String[] | undefined;
-  formulario!: FormGroup;
+  formularioCrear!: FormGroup;
+  formularioEditar!: FormGroup;
   banderaModalCrear: boolean = false;
+  banderaModalEditar: boolean = false;
+  idPlantaEditar!: number;
 
   items = (items as any).default;
   indicadores = (indicadores as any).default;
@@ -43,10 +48,21 @@ export class DashboardComponent implements OnInit{
 
   
 
-  iniciarFormulario(): FormGroup {
+  iniciarFormularioCrear(): FormGroup {
     return this.formBuilder.group({
       nombrePlanta: ['', [Validators.required]],
       pais: ['', [Validators.required]]
+    })
+  }
+  
+  iniciarFormularioEditar(nombre:string, pais: string, lecturas: number, sensores: number, alertasMedias: number, alertasRojas: number): FormGroup {
+    return this.formBuilder.group({
+      nombrePlantaEditar: [nombre, [Validators.required]],
+      paisEditar: [pais, [Validators.required]],
+      lecturasEditar: [lecturas, [Validators.required, Validators.min(0)]],
+      sensoresDeshablitadosEditar: [sensores, [Validators.required, Validators.min(0)]],
+      alertasMediasEditar: [alertasMedias, [Validators.required, Validators.min(0)]],
+      alertasRojasEditar: [alertasRojas, [Validators.required, Validators.min(0)]],
     })
   }
 
@@ -59,7 +75,7 @@ export class DashboardComponent implements OnInit{
         this.sensoresDeshabilitados = data.sensoresDeshabilitados;
       }, error =>{
         console.log(error.error)
-        window.location.reload()
+        this.respuestaBackend = ["No se pudo obtener los datos. Recargue la página."]
       })
   }
 
@@ -75,9 +91,36 @@ export class DashboardComponent implements OnInit{
   }
 
   crearNuevaPlanta(){
-    const planta = new PlantaDtoModel(this.formulario.get('pais')?.value, this.formulario.get('nombrePlanta')?.value, 0, 0, 0, 0)
+    const planta = new PlantaDtoModel(this.formularioCrear.get('pais')?.value, this.formularioCrear.get('nombrePlanta')?.value, 0, 0, 0, 0)
 
     this.crearPlantaService.crearPlanta(planta).subscribe(data=>{
+      this.respuestaBackend = Object.values(data)
+    }, error =>{
+      this.respuestaBackend = Object.values(error.error)
+    })
+
+    setTimeout(() => {
+      this.respuestaBackend = undefined;
+      window.location.reload()
+    }, 3000);
+  }
+
+  guardarPlantaSeleccionada(planta : PlantaModel){
+    this.formularioEditar = this.iniciarFormularioEditar(planta.nombre, planta.pais, planta.lecturas, planta.sensoresDeshabilitados, planta.alertasMedias, planta.alertasRojas);
+    this.idPlantaEditar = planta.id;
+  }
+
+  editarPlanta(){
+    const planta = new PlantaDtoModel(
+      this.formularioEditar.get('paisEditar')?.value,
+      this.formularioEditar.get('nombrePlantaEditar')?.value,
+      this.formularioEditar.get('alertasMediasEditar')?.value,
+      this.formularioEditar.get('lecturasEditar')?.value,
+      this.formularioEditar.get('alertasRojasEditar')?.value,
+      this.formularioEditar.get('sensoresDeshablitadosEditar')?.value)
+
+      console.log(planta)
+    this.actualizarPlantaService.actualizarPlanta(this.idPlantaEditar, planta).subscribe(data=>{
       this.respuestaBackend = Object.values(data)
     }, error =>{
       this.respuestaBackend = Object.values(error.error)
@@ -124,8 +167,11 @@ export class DashboardComponent implements OnInit{
   }
 
 
-  cambiarBanderaModal(estado:boolean){
+  cambiarBanderaModalCrear(estado:boolean){
     this.banderaModalCrear = estado;
+  }
+  cambiarBanderaModalEditar(estado:boolean){
+    this.banderaModalEditar = estado;
   }
 
   cargarPaises() {

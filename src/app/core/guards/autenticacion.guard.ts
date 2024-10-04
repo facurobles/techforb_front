@@ -35,8 +35,10 @@ export class AutenticacionGuard implements CanActivate {
         }, error => {
           console.log("El token no es valido, se redirige al login.")
           console.log(Object.values(error.error));
+
           this.cookieService.delete('token', '/');
-          this.router.navigate(['login']);
+          
+          this.router.navigate(['sesionExpirada']);
           resolve(false);
         });
       });

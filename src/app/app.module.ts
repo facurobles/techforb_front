@@ -18,6 +18,7 @@ import { SensoresComponent } from './features/sensores/sensores.component';
 import { PlantaComponent } from './features/planta/planta.component';
 import { PerfilModule } from './features/perfil/perfil.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
+import { SesionExpiradaComponent } from './features/sesionExpirada/sesion-expirada.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
     MonitoreoComponent,
     SensoresComponent,
     PlantaComponent,
+    SesionExpiradaComponent,
   ],
   imports: [
     BrowserModule,
