@@ -6,8 +6,8 @@ import { environment } from 'src/environments';
 })
 export class BackendUrlService {
 
-  private url : string = environment.apiUrlDevelop
-  //private url : string = environment.apiUrlProd
+  //private url : string = environment.apiUrlDevelop
+  private url : string = environment.apiUrlProd
 
   constructor() { }
 
