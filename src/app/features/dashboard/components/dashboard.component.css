@@ -361,3 +361,66 @@ td{
     align-items: center;
     font-weight:400;
 }
+
+.nombrePaisMobile{
+    display: none;
+}
+.divBanderaMobile{
+    display: flex;
+    flex-direction: row;
+ }
+
+/*CONF PARA VISTA MOBILE*/
+
+@media screen and (max-width: 768px){
+ .divRowTarjetas{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+ }
+ .divTablaPlantas{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+ }
+ .divRowIndicadores{
+    display: none;
+ }
+ .divBandera{
+  flex-direction: column;  
+  align-items: center;
+ }
+ th{
+    display: none;
+ }
+ .nombrePaisMobile{
+    display: block;
+ }
+ .nombrePaisDesktop{
+    display: none;
+ }
+ .lecturaMobileRojo{
+    color: red;
+ }
+
+}
+
+@media screen and (max-width: 576px){
+    .divModal{
+        width: 90%;
+    }
+    .containerBotones{
+        flex-direction: column;
+        align-items: center;
+    }
+    .botonModalCancelar{
+        margin-right: 0;
+    }
+    .botonModalCrear{
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    .botonModal{
+        width: 60%;
+    }
+}

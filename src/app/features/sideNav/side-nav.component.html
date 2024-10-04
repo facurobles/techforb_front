@@ -1,33 +1,39 @@
 <div class="container-fluid">
-    <div >
-        <a routerLink="dashboard">
+    <div class="divIcono divLogo" >
+        <a routerLink="dashboard" title="DASHBOARD">
             <img id="logo" src="../../../assets/montaniaIcon.png" alt="">
+            <div class="title">PORTAL MONITOREO</div>
         </a>
     </div>
     
     <div class="divIcono" >
-        <a routerLink="dashboard" >
+        <a routerLink="dashboard" title="DASHBOARD" >
             <img class="icono" [src]="estaActivo('/main/dashboard')? '../../../assets/mundoIconoActivo.png':'../../../assets/mundoIcono.png'" alt="">
+            <div class="title">Dashboard</div>
         </a>
     </div>
     <div class="divIcono" >
-        <a routerLink="monitoreo" >
+        <a routerLink="monitoreo"  title="MONITOREO">
             <img class="icono" [src]="estaActivo('/main/monitoreo')? '../../../assets/camaraIconoActivo.png':'../../../assets/camaraIcono.png'" alt="">
+            <div class="title">Monitoreo</div>
         </a>
     </div>
     <div class="divIcono" >
-        <a routerLink="sensores" >
+        <a routerLink="sensores"  title="SENSORES">
             <img class="icono" [src]="estaActivo('/main/sensores')? '../../../assets/radarIconoActivo.png':'../../../assets/radarIcono.png'" alt="">
+            <div class="title">Sensores</div>
         </a>
     </div>
     <div class="divIcono" >
-        <a routerLink="planta" >
+        <a routerLink="planta"  title="PLANTA">
             <img class="icono" [src]="estaActivo('/main/planta')? '../../../assets/nuclearIconoActivo.png':'../../../assets/nuclearIcono.png'" alt="">
+            <div class="title">Planta</div>
         </a>
     </div>
-    <div class="divIcono" >
+    <div class="divIcono"  (click)="cerrarSesion()" title="CERRAR SESIÓN">
         <a >
-            <img class="icono" (click)="cerrarSesion()" [src]="estaActivo('/main/logOut')? '../../../assets/logOutIconoActivo.png':'../../../assets/logOutIcono.png'" alt="">
+            <img class="icono" [src]="estaActivo('/main/logOut')? '../../../assets/logOutIconoActivo.png':'../../../assets/logOutIcono.png'" alt="">
+            <div class="title">Cerrar sesión</div>
         </a>
     </div>
 </div>

@@ -2,7 +2,7 @@
 
     <div class="row divRowTarjetas">
 
-        <div class="col divTarjeta">
+        <div class="col-sm-3 col-12 divTarjeta">
             <div class="tarjeta">
                 <div class="col divDatos">
                     <div class="titulo">Lecturas OK</div>
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="col divTarjeta">
+        <div class="col-sm-3 col-12 divTarjeta">
             <div class="tarjeta">
                 <div class="col divDatos">
                     <div class="titulo">Alertas medias</div>
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="col divTarjeta">
+        <div class="col-sm-3 col-12 divTarjeta">
             <div class="tarjeta">
                 <div class="col divDatos">
                     <div class="titulo">Alertas rojas</div>
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="col divTarjeta">
+        <div class="col-sm-3 col-12 divTarjeta">
             <div class="tarjeta">
                 <div class="col divDatos">
                     <div class="titulo">Sensores deshabilitados</div>
@@ -77,15 +77,18 @@
                         <tr class="fila" *ngFor="let planta of plantas, let i = index">
                             <td>
                                 <div class="divBandera">
-                                    <img class="bandera" [src]="'https://flagcdn.com/w40/' + planta.codigo + '.png'"
+                                    <div class="divBanderaMobile">
+                                        <img class="bandera" [src]="'https://flagcdn.com/w40/' + planta.codigo + '.png'"
                                         alt="">
-                                    <div class="nombrePais">{{planta.pais}}</div>
+                                        <div class="nombrePais">{{planta.pais}}</div>
+                                    </div>
+                                    <div class="nombrePais nombrePaisMobile">{{planta.nombre}}</div>
                                 </div>
                             </td>
-                            <td>{{planta.nombre}}</td>
-                            <td>{{planta.lecturas}}</td>
-                            <td>{{planta.alertasMedias}}</td>
-                            <td>{{planta.alertasRojas}}</td>
+                            <td class="nombrePaisDesktop" >{{planta.nombre}}</td>
+                            <td class="lecturaMobileRojo" >{{planta.lecturas}}</td>
+                            <td class="lecturaMobileRojo" >{{planta.alertasMedias}}</td>
+                            <td class="lecturaMobileRojo" >{{planta.alertasRojas}}</td>
                             <td class="colOpciones">
                                 <img class="iconoOpciones" *ngIf="indice!=i+1"
                                     (click)="banderaOpciones(true, i+1, $event)" id="tresPuntosOpciones"

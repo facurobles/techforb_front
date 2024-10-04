@@ -1,6 +1,9 @@
 <div class="container-fluid">
-    <div class="divContainerAll">
-        <div class="divSideNav">
+    <div class="divMenuIcono" (click)="cambiarBanderaMenu(true)" >
+        <img src="../../../assets/menuIcono.png" alt="" id="iconoMenu">
+    </div>
+    <div class="divContainerAll" (click)="cambiarBanderaMenu(false); $event.stopPropagation()">
+        <div class="divSideNav" [ngClass]="banderaMenu? 'menuOn':'menuOf'" >
             <app-side-nav></app-side-nav>
         </div>
         <div class="divNavBarRouterOutlet">

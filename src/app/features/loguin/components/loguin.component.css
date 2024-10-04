@@ -250,3 +250,27 @@ form{
 ::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
     top: 24px;
 }
+
+
+
+/*CONF PARA VISTA MOBILE*/
+
+@media screen and (max-width: 992px){
+    #imgLoguin, .divImgLeft{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 450px){
+   .divLoguinRight{
+    padding-left: 30px;
+    padding-right: 30px;
+   }
+   .pregunta{
+    display: none;
+   }
+
+   .boton{
+    justify-content: center;
+   }
+}

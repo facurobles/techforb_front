@@ -37,3 +37,60 @@
     min-height: 100vh;
 }
 
+.menuOn{
+    top: 0;
+    left: 0;
+}
+
+.menuOf{
+    left: -600px;
+}
+
+.divMenuIcono{
+    padding: 10px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+#iconoMenu{
+    width: 24px;
+}
+
+/*CONF PARA VISTA MOBILE*/
+
+@media screen and (max-width: 992px){
+    .divSideNav{
+    transition: all 1s ease;
+    position: absolute;
+    }
+
+    .divNavBar{
+        padding-left: 60px;
+    }
+    
+    .divRouterOutlet{
+        padding-left: 30px;
+    }
+    .divNavBarRouterOutlet{
+        width:100%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .divSideNav{
+    transition: all 1s ease;
+    position: absolute;
+    }
+
+    .divNavBar{
+        padding-left: 60px;
+    }
+    
+    .divRouterOutlet{
+        padding-left: 0px;
+    }
+    .divNavBarRouterOutlet{
+        width:100%;
+    }
+}

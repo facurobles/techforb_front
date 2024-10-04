@@ -166,3 +166,11 @@
 ::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
     top: 24px;
 }
+
+
+@media screen and (max-width: 576px){
+    #botonEliminarUsuario{
+        margin-left: 0;
+        margin-top: 20px;
+    }
+}

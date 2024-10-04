@@ -6,4 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
+
+
+  banderaMenu :boolean = false;
+
+  cambiarBanderaMenu(estado:boolean){
+    this.banderaMenu = estado;
+  }
+
 }
