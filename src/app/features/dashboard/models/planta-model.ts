@@ -7,8 +7,9 @@ export class PlantaModel {
     private _lecturas: Number;
     private _alertasRojas: Number;
     private _sensoresDeshabilitados: Number
+    private _codigo? :string
 
-    constructor(id: Number, pais: string, nombre: string, alertasMedias: Number, lecturas: Number, alertasRojas: Number, sensoresDeshabilitados: Number){
+    constructor(id: Number, pais: string, nombre: string, alertasMedias: Number, lecturas: Number, alertasRojas: Number, sensoresDeshabilitados: Number, codigo? :string){
         this._id = id;
         this._pais = pais;
         this._nombre = nombre;
@@ -16,6 +17,7 @@ export class PlantaModel {
         this._lecturas = lecturas;
         this._alertasRojas = alertasRojas;
         this._sensoresDeshabilitados = sensoresDeshabilitados;
+        this._codigo = codigo;
     }
 
     get id():Number{
@@ -68,6 +70,14 @@ export class PlantaModel {
 
     set sensoresDeshabilitados(sensoresDeshabilitados: Number){
         this._sensoresDeshabilitados = sensoresDeshabilitados
+    }
+
+    get codigo():string{
+        return this.codigo
+    }
+
+    set codigo(codigo: string){
+        this._codigo = codigo
     }
 
 }

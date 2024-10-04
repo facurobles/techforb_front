@@ -1,0 +1,15 @@
+[
+    {
+        "icono":"../../../../assets/lecturasIcono.png",
+        "cantidad":100
+    },
+    {
+        "icono":"../../../../assets/alertasMediasIcono.png",
+        "cantidad":20
+    },
+    {
+        "icono":"../../../../assets/alertasRojasIcono.png",
+        "cantidad":3
+    }
+
+]

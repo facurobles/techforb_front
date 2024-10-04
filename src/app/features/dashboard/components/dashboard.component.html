@@ -1,6 +1,7 @@
 <div class="container-fluid" (click)="banderaOpciones(false, -1)">
 
     <div class="row divRowTarjetas">
+
         <div class="col divTarjeta">
             <div class="tarjeta">
                 <div class="col divDatos">
@@ -47,12 +48,15 @@
         </div>
     </div>
 
+
     <div class="row divTablaPlantas" *ngIf="plantas">
+
         <div class="col tabla">
             <div class="row rowTituloTabla">
                 <div class="tituloTabla">Plantas</div>
                 <div class="divButtonCrearPlanta">
-                    <button id="buttonCrearPlanta">+ Crear nueva planta</button>
+                    <button id="buttonCrearPlanta" (click)="cambiarBanderaModal(true); $event.stopPropagation()">+ Crear
+                        nueva planta</button>
                 </div>
             </div>
 
@@ -69,20 +73,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="fila" *ngFor="let planta of plantas, let i = index" >
-                            <td>{{planta.pais}}</td>
+                        <tr class="fila" *ngFor="let planta of plantas, let i = index">
+                            <td >
+                                <div class="divBandera">
+                                        <img class="bandera" [src]="'https://flagcdn.com/w40/' + planta.codigo + '.png'" alt="">
+                                        <div class="nombrePais">{{planta.pais}}</div>
+                                </div>
+                            </td>
                             <td>{{planta.nombre}}</td>
                             <td>{{planta.lecturas}}</td>
                             <td>{{planta.alertasMedias}}</td>
                             <td>{{planta.alertasRojas}}</td>
                             <td class="colOpciones">
-                                <img class="iconoOpciones" *ngIf="indice!=i+1" (click)="banderaOpciones(true, i+1, $event)" id="tresPuntosOpciones" src="../../../../assets/opcionesIcono.png" alt="">
+                                <img class="iconoOpciones" *ngIf="indice!=i+1"
+                                    (click)="banderaOpciones(true, i+1, $event)" id="tresPuntosOpciones"
+                                    src="../../../../assets/opcionesIcono.png" alt="">
                                 <div class="opciones" *ngIf="bandera && indice==i+1">
                                     <button class="botonOpciones botonEditar">
-                                        <img src="../../../../assets/editarIcono.png" alt="" class="iconoOpciones">
+                                        <img src="../../../../assets/editarIcono.png" alt="" title="EDITAR"
+                                            class="iconoOpciones">
                                     </button>
-                                    <button class="botonOpciones botonEliminar">
-                                        <img src="../../../../assets/eliminarIcono.png" alt="" class="iconoOpciones">
+                                    <button class="botonOpciones botonEliminar"
+                                        (click)="eliminarPlanta(planta.id) ; $event.stopPropagation()">
+                                        <img src="../../../../assets/eliminarIcono.png" alt="" title="ELIMINAR"
+                                            class="iconoOpciones">
                                     </button>
                                 </div>
                             </td>
@@ -94,258 +108,96 @@
         </div>
     </div>
 
+
     <div class="row divRowIndicadores">
-        <div class="col divIndicador">
+        <div class="col divIndicador" *ngFor="let indicador of indicadores[0]">
             <div class="indicador">
                 <div class="row" style="height: 100%">
                     <div class="col-8 divDatosIndicador">
                         <div class="row">
-                            <div class="tituloIndicador">Temperatura</div>
+                            <div class="tituloIndicador">{{indicador.nombre}}</div>
                         </div>
                         <div class="row">
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
-                                <div class="cantidadIndicador">100</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">20</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">3</div>
+                            <div class="col divIconoChicoIndicador" *ngFor="let item of items">
+                                <img class="iconoChicoIndicadores" [src]="item.icono" alt="">
+                                <div class="cantidadIndicador">{{item.cantidad}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-4 divIconoGrandeIndicador">
-                        <img class="iconoGrandeIndicadores" src="../../../../assets/temperaturaIcono.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col divIndicador">
-            <div class="indicador">
-                <div class="row" style="height: 100%">
-                    <div class="col-8 divDatosIndicador">
-                        <div class="row">
-                            <div class="tituloIndicador">Presión</div>
-                        </div>
-                        <div class="row">
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
-                                <div class="cantidadIndicador">100</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">20</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">3</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 divIconoGrandeIndicador">
-                        <img class="iconoGrandeIndicadores" src="../../../../assets/presionIcono.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col divIndicador">
-            <div class="indicador">
-                <div class="row" style="height: 100%">
-                    <div class="col-8 divDatosIndicador">
-                        <div class="row">
-                            <div class="tituloIndicador">Viento</div>
-                        </div>
-                        <div class="row">
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
-                                <div class="cantidadIndicador">100</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">20</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">3</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 divIconoGrandeIndicador">
-                        <img class="iconoGrandeIndicadores" src="../../../../assets/vientoIcono.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col divIndicador">
-            <div class="indicador">
-                <div class="row" style="height: 100%">
-                    <div class="col-8 divDatosIndicador">
-                        <div class="row">
-                            <div class="tituloIndicador">Niveles</div>
-                        </div>
-                        <div class="row">
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
-                                <div class="cantidadIndicador">100</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">20</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">3</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 divIconoGrandeIndicador">
-                        <img class="iconoGrandeIndicadores" src="../../../../assets/nivelesIcono.png" alt="">
+                        <img class="iconoGrandeIndicadores" [src]="indicador.icono" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
     <div class="row divRowIndicadores">
-        <div class="col divIndicador">
+        <div class="col divIndicador" *ngFor="let indicador of indicadores[1]">
             <div class="indicador">
                 <div class="row" style="height: 100%">
                     <div class="col-8 divDatosIndicador">
                         <div class="row">
-                            <div class="tituloIndicador">Energía</div>
+                            <div class="tituloIndicador">{{indicador.nombre}}</div>
                         </div>
                         <div class="row">
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
-                                <div class="cantidadIndicador">100</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">20</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">3</div>
+                            <div class="col divIconoChicoIndicador" *ngFor="let item of items">
+                                <img class="iconoChicoIndicadores" [src]="item.icono" alt="">
+                                <div class="cantidadIndicador">{{item.cantidad}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-4 divIconoGrandeIndicador">
-                        <img class="iconoGrandeIndicadores" src="../../../../assets/energiaIcono.png" alt="">
+                        <img class="iconoGrandeIndicadores" [src]="indicador.icono" alt="">
                     </div>
                 </div>
             </div>
         </div>
+        
+    </div>
 
-        <div class="col divIndicador">
-            <div class="indicador">
-                <div class="row" style="height: 100%">
-                    <div class="col-8 divDatosIndicador">
-                        <div class="row">
-                            <div class="tituloIndicador">Tensión</div>
-                        </div>
-                        <div class="row">
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
-                                <div class="cantidadIndicador">100</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">20</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">3</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 divIconoGrandeIndicador">
-                        <img class="iconoGrandeIndicadores" src="../../../../assets/tensionIcono.png" alt="">
-                    </div>
+
+    <div class="containerModal" *ngIf="banderaModalCrear">
+        <div class="divModalCrearPlanta">
+            <form [formGroup]="formulario">
+                <div class="tituloModalCrear">Crear nueva planta</div>
+
+                <label class="labelCrear" for="nombrePlantaCrear">Nombre Planta</label>
+                <input type="text" class="inputPlantaCrear" placeholder="Ingrese nombre" formControlName="nombrePlanta">
+                <div class="alert moverAlerta alert-danger"
+                    *ngIf="formulario.get('nombrePlanta')?.touched && formulario.get('nombrePlanta')?.errors?.['required']">
+                    Este campo es obligatorio
                 </div>
-            </div>
-        </div>
 
-        <div class="col divIndicador">
-            <div class="indicador">
-                <div class="row" style="height: 100%">
-                    <div class="col-8 divDatosIndicador">
-                        <div class="row">
-                            <div class="tituloIndicador">Monóxido de carbono</div>
-                        </div>
-                        <div class="row">
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
-                                <div class="cantidadIndicador">100</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">20</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/monoxidoIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">3</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 divIconoGrandeIndicador">
-                        <img class="iconoGrandeIndicadores" src="../../../../assets/temperaturaIcono.png" alt="">
-                    </div>
+                <label class="labelCrear" for="paisCrearPlanta">País</label>
+                <select class="inputPlantaCrear" name="paises" id="paisCrearPlanta" formControlName="pais">
+                    <option value="" disabled selected>Seleccione un país</option>
+                    <option *ngFor="let pais of paisesFormateados" value="{{pais.nombre}}">{{pais.nombre}}</option>
+
+                </select>
+                <div class="alert moverAlerta alert-danger"
+                    *ngIf="formulario.get('pais')?.touched && formulario.get('pais')?.errors?.['required']">
+                    Este campo es obligatorio
                 </div>
-            </div>
-        </div>
 
-        <div class="col divIndicador">
-            <div class="indicador">
-                <div class="row" style="height: 100%">
-                    <div class="col-8 divDatosIndicador">
-                        <div class="row">
-                            <div class="tituloIndicador">Otros gases</div>
-                        </div>
-                        <div class="row">
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/lecturasIcono.png" alt="">
-                                <div class="cantidadIndicador">100</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasMediasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">20</div>
-                            </div>
-                            <div class="col divIconoChicoIndicador">
-                                <img class="iconoChicoIndicadores" src="../../../../assets/alertasRojasIcono.png"
-                                    alt="">
-                                <div class="cantidadIndicador">3</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 divIconoGrandeIndicador">
-                        <img class="iconoGrandeIndicadores" src="../../../../assets/otroGasesIcono.png" alt="">
-                    </div>
+                <div class="containerBotones">
+                    <button class="botonModal botonModalCrear" (click)="cambiarBanderaModal(false)">Cancelar</button>
+                    <button class="botonModal botonModalCancelar"
+                        (click)="crearNuevaPlanta() ; $event.stopPropagation()"
+                        [disabled]="formulario.invalid">Crear</button>
                 </div>
-            </div>
-        </div>
 
+            </form>
+        </div>
+        <div class="divModalEditarPlanta">
+
+        </div>
+    </div>
+
+    <div class="divNotificacion" *ngIf="respuestaBackend">
+        <div class="notificacion">
+            {{respuestaBackend}}
+        </div>
     </div>
 
 </div>

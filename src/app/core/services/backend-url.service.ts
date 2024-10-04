@@ -34,11 +34,11 @@ export class BackendUrlService {
     return `${this.url}planta/crear`;
   }
 
-  public getEliminarPlantaUrl(id: string):string{
+  public getEliminarPlantaUrl(id: Number):string{
     return `${this.url}planta/eliminar/${id}`;
   }
     
-  public getActualizarPlantaUrl(id: string):string{
+  public getActualizarPlantaUrl(id: Number):string{
     return `${this.url}planta/actualizar/${id}`;
   }
   
@@ -50,6 +50,10 @@ export class BackendUrlService {
     return `${this.url}planta/todas`;
   }
 
+  /*ENDPOINTS TOKEN*/
 
+  public getValidarTokenUrl():string{
+    return `${this.url}autenticacion/validarToken`;
+  }
 
 }

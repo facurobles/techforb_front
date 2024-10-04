@@ -6,6 +6,7 @@
 .container-fluid{
     height: min-content;
     background: var(--color-primario);
+    position: relative;
 }
 
 .divContainerAll{

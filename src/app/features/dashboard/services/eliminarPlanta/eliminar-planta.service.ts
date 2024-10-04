@@ -10,7 +10,7 @@ export class EliminarPlantaService {
 
   constructor(private http : HttpClient, private backendUrlService : BackendUrlService) { }
 
-  public eliminarPlanta(id : string) : Observable<any>{  
+  public eliminarPlanta(id : Number) : Observable<any>{  
     const url = this.backendUrlService.getEliminarPlantaUrl(id);   
     return this.http.delete<any>(url);
   }

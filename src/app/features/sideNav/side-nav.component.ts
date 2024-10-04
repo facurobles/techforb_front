@@ -25,10 +25,6 @@ export class SideNavComponent {
 
   cerrarSesion(){
     this.cookieService.delete('token', '/')
-    // console.log('se deberia haber borrado el token')
-    // if(this.cookieService.get('token')){
-    //   console.log('no se borro')
-    // }
     window.location.reload()
   }
 

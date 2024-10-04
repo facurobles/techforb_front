@@ -17,11 +17,11 @@ import { MonitoreoComponent } from './features/monitoreo/monitoreo.component';
 import { SensoresComponent } from './features/sensores/sensores.component';
 import { PlantaComponent } from './features/planta/planta.component';
 import { PerfilModule } from './features/perfil/perfil.module';
+import { DashboardModule } from './features/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     SideNavComponent,
     NavBarComponent,
     MainComponent,
@@ -36,6 +36,7 @@ import { PerfilModule } from './features/perfil/perfil.module';
     BrowserAnimationsModule,
     RegistrarUsuarioModule,
     PerfilModule,
+    DashboardModule
   ],
   providers: [CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: AutenticacionInterceptor, multi: true }

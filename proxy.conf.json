@@ -1,0 +1,10 @@
+{
+    "/flagcdn-api": {
+      "target": "https://flagcdn.com",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/flagcdn-api": ""
+      }
+    }
+  }

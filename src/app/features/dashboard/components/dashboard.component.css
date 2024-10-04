@@ -156,8 +156,33 @@ td{
     width: min-content;
 }
 
+.botonEditar:hover{
+    transform: scale(1.2);
+}
 
+.botonEliminar{
+    z-index: 10;
+    padding-left: 15px;
+}
 
+.botonEliminar:hover{
+    transform: scale(1.2);
+}
+
+.divBandera{
+    display: flex;
+    flex-direction: row;
+}
+
+.bandera{
+    width: 30px;
+    border-radius: 5px;
+}
+
+.nombrePais{
+    padding-left: 10px;
+    
+}
 
 /*indicadres*/
 .divRowIndicadores{
@@ -221,4 +246,102 @@ td{
     height: 100%;
     justify-content: center;
     padding-left: 20px;
+}
+
+/*MODAL PARA CREAR PLANTA*/
+
+.containerModal{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #00000059;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    font-family: var(--font-family-primary);
+}
+
+.divModalCrearPlanta{
+    width: 380px;
+    height: auto;
+    border-radius: 15px;
+    top: 50%;
+    left: 50%;
+    background: #FFFFFF;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.tituloModalCrear, .labelCrear, .inputPlantaCrear, #paisCrearPlanta, .containerBotones{
+    width: 100%;
+}
+
+.tituloModalCrear{
+    color: #000000;
+}
+
+.labelCrear{
+    color: #838B9E;
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+.inputPlantaCrear{
+    height: 42px;
+    border-radius: 7.43px;
+    border: 0.93px solid #C6C9D2;
+    padding-left: 20px;
+}
+
+.containerBotones{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.botonModal{
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+}
+
+.botonModalCrear{
+    color: #33A3AA;
+    border: 1px solid #33A3AA ;
+    margin-right: 5px;
+}
+
+.botonModalCancelar{
+    background: #33A3AA;
+    color: #FFFFFF;
+    margin-left: 5px;
+    border: none;
+}
+
+/*ALERTA*/
+.divNotificacion{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    height: 30px;
+    width: min-content;
+    padding: 20px;
+    background: #a4df96;
+    color: rgb(41, 41, 41);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 10px solid green;
+    z-index: 200;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    font-weight:400;
 }

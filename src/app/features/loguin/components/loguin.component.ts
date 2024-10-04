@@ -21,17 +21,12 @@ export class LoguinComponent implements OnInit {
   mensajesErrorBackend: String[] = [];
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router, private cookieService: CookieService) { 
-    this.cookieService.deleteAll()
-    const token=  this.cookieService.get('token')
-    if(!token){
-      console.log('no hay token')
-    }else{
-      console.log('token'+ token)
-    }
   }
 
   ngOnInit(): void {
     this.formulario = this.iniciarFormulario();
+    this.cookieService.delete('token', '/')
+
   }
 
   iniciarFormulario(): FormGroup {

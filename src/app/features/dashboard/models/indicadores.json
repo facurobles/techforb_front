@@ -1,0 +1,34 @@
+[
+    [{
+        "nombre":"Temperatura",
+        "icono": "../../../../assets/temperaturaIcono.png"
+    },
+    {
+        "nombre":"Presión",
+        "icono": "../../../../assets/presionIcono.png"
+    },
+    {
+        "nombre":"Viento",
+        "icono": "../../../../assets/vientoIcono.png"
+    },
+    {
+        "nombre":"Niveles",
+        "icono": "../../../../assets/nivelesIcono.png"
+    }],
+    [{
+        "nombre":"Energía",
+        "icono": "../../../../assets/energiaIcono.png"
+    },
+    {
+        "nombre":"Tensión",
+        "icono": "../../../../assets/tensionIcono.png"
+    },
+    {
+        "nombre":"Monóxido de carbono",
+        "icono": "../../../../assets/monoxidoIcono.png"
+    },
+    {
+        "nombre":"Otros gases",
+        "icono": "../../../../assets/otroGasesIcono.png"
+    }]
+]
