@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors }
 import { Router } from '@angular/router';
 import { UsuarioRegistrar } from '../models/usuario-registrar';
 import { RegistrarUsuarioService } from '../services/registrar-usuario.service';
+import * as Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -82,7 +83,14 @@ export class RegistrarUsuarioComponent {
       this.formulario.get('apellido')?.value,
       this.formulario.get('nacimiento')?.value)
 
+      /**Alerta para esperar hasta que se levante el servidor del back */
+    Notiflix.Loading.standard( "Levantando servidor backend.. este proceso puede demorar unos minutos.",
+      {messageMaxLength:200, messageFontSize:"20px", clickToClose:true});
+
     this.registrarUsuarioService.registrarUsuario(usuario).subscribe(data => {
+
+      Notiflix.Loading.remove()
+      
       this.mensajesErrorBackend = Object.values(data);
 
       console.log("se registrro con éxito el usuario")

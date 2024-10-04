@@ -4,6 +4,7 @@ import { UsuarioLogin } from '../models/usuarioLogin';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import * as Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-loguin',
@@ -26,7 +27,6 @@ export class LoguinComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.iniciarFormulario();
     this.cookieService.delete('token', '/')
-
   }
 
   iniciarFormulario(): FormGroup {
@@ -48,7 +48,14 @@ export class LoguinComponent implements OnInit {
   enviar() {
     const usuario: UsuarioLogin = new UsuarioLogin(this.formulario.get('email')?.value, this.formulario.get('password')?.value)
 
+    /**Alerta para esperar hasta que se levante el servidor del back */
+    Notiflix.Loading.standard( "Levantando servidor backend.. este proceso puede demorar unos minutos.",
+      {messageMaxLength:200, messageFontSize:"20px", clickToClose:true});
+
     this.loginService.loginUsuario(usuario).subscribe(data => {
+
+      Notiflix.Loading.remove()
+
       console.log('Esta es la respuesta cuando el logueo es exitoso ' + data.jwt)
       
       const arrayToken = data.jwt.split('.');
