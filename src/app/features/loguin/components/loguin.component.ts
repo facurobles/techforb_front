@@ -75,6 +75,7 @@ export class LoguinComponent implements OnInit {
       this.router.navigate(['/main'])
 
     }, error => {
+      Notiflix.Loading.remove()
       this.mensajesErrorBackend = Object.values(error.error);
     })
 

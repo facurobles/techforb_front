@@ -90,7 +90,7 @@ export class RegistrarUsuarioComponent {
     this.registrarUsuarioService.registrarUsuario(usuario).subscribe(data => {
 
       Notiflix.Loading.remove()
-      
+
       this.mensajesErrorBackend = Object.values(data);
 
       console.log("se registrro con éxito el usuario")
@@ -100,6 +100,7 @@ export class RegistrarUsuarioComponent {
       }, 2000);
 
     }, error => {
+      Notiflix.Loading.remove()
       this.mensajesErrorBackend = Object.values(error.error);
     })
 
